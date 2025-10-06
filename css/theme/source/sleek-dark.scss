@@ -98,7 +98,7 @@ $linkColorHover: color.scale($distinctLinkColor, $lightness: -50%);
 $selectionBackgroundColor: $selection; // 定義済みの選択色を使用
 
 // フォントサイズ設定
-$mainFontSize: 32px;
+$mainFontSize: 42px;  // or 40px, 44px
 $mainFont: "Source Han Sans", Helvetica, sans-serif;
 $headingFont: "Source Han Sans", Helvetica, sans-serif;
 $headingLineHeight: 1.2;
