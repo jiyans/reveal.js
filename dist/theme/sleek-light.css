@@ -369,7 +369,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 /*-- scss:rules --*/
 .reveal .figure .figure-number,
 .reveal .figure p {
-  font-size: 0.8em;
+  font-size: 0.4em;
 }
 .reveal .figure p .figure-number {
   font-size: 1em !important; /* 親要素と同じサイズに */
@@ -653,7 +653,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal .leftcol {
   float: left;
-  justify-content: center;
   width: 48%;
 }
 

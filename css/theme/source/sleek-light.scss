@@ -134,7 +134,7 @@ $overlayElementFgColor: 240, 240, 240;
     // 図のキャプション
     .figure .figure-number,
     .figure p {
-        font-size: 0.8em;
+        font-size: 0.4em;
     }
     .figure p .figure-number {
         font-size: 1em !important; /* 親要素と同じサイズに */
@@ -469,7 +469,6 @@ $overlayElementFgColor: 240, 240, 240;
 }
 .reveal .leftcol {
     float: left;
-    justify-content: center;
     width: 48%;
 }
 .reveal .rightcol {
