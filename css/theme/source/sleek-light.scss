@@ -1,0 +1,904 @@
+/**
+ * SleekCode light theme of reveal.js.
+ *
+ * By Kaoru Babasaki. Based on white.(s)css by Hakim El Hattab, http://hakim.se
+ *
+ */
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@import url(./fonts/source-sans-pro/source-sans-pro.css);
+@import url(./fonts/source-han-serif/source-han-serif.css);
+@import url(./fonts/source-han-sans/source-han-sans.css);
+
+html * {
+    color-profile: sRGB;
+    rendering-intent: auto;
+}
+
+// ---------------------------------------------
+// カスタム変数
+$background: #fff;
+$foreground: #222;
+$selection: #44475a; // Note: This seems dark for a light theme selection, consider $emacsLightColor
+$comment: #6272a4;
+$red: #ff5555;
+$orange: #ffb86c;
+$yellow: #f1fa8c;
+$green: #50fa7b;
+$purple: #bd93f9;
+$cyan: #8be9fd;
+$pink: #ff79c6;
+$blue: #61afef; // Doom One Blue (Used for links)
+$emacsColor: #7f5ab6; // メインブランドカラー（Emacs由来）
+$vimColor: #02992f; // セカンダリブランドカラー（Vim由来）
+$emacsLightColor: color.scale($emacsColor, $lightness: 80%);
+$distinctLinkColor: #61afef; // Atom One Dark Syntaxの青を参考に
+// アクセントカラー
+$accent: $vimColor;
+$accent2: $emacsColor;
+
+// 強調表示用の背景色と文字色
+$emp_bg: $emacsLightColor;
+$emp_fontc: color.scale($emacsColor, $lightness: -20%);
+$blockquoteBorderColor: $emacsColor;
+$tableBorderColor: rgba($vimColor, 0.3);
+$right-arrow: "\2192"; // Unicode character for right arrow
+
+$cardBackgroundColor: #fff;
+$cardShadowColor: rgba(0, 0, 0, 0.08);
+$cardHoverShadowColor: rgba(0, 0, 0, 0.1);
+$cardHeaderColor: #333;
+$cardIssueColor: #dc3545; // Bootstrap danger color
+$cardValueColor: #007bff; // Bootstrap primary color
+$ganttShadowColor: #7e8f94;
+$ganttOddRowBgColor: #f5f5f5;
+$ganttEmptyRowBgColor: #ffd6d2;
+$ganttLineColor: rgba(0, 0, 0, 0.1);
+$ganttMonthBgColor: #0a3444;
+$ganttMonthFgColor: #fff;
+$ganttBarBgColor: #55de84;
+$ganttBarFgColor: #fff;
+$ganttStripeOverlay: rgba(255, 255, 255, 0.1);
+$ganttHandleOverlay: rgba(0, 0, 0, 0.3);
+$tableHeaderBgColor: rgba($vimColor, 0.1);
+$tableCaptionColor: #666666;
+$tableBorderBottomColor: #d3d3d3; // Light grey
+$subtleTextColor: #7f7f7f; // Grey for less important text
+$iconDefaultColor: #6c757d; // Bootstrap secondary text color
+// --- カスタム変数 ここまで ---
+
+// ---------------------------------------------
+// Override theme settings (see ../template/settings.scss)
+// メインカラー設定
+$backgroundColor: $background;
+$mainColor: $foreground;
+$headingColor: $foreground;
+$blockMargin: 12px;
+$headingMargin: 0 0 $blockMargin 0;
+
+// リンクカラー
+$linkColor: $distinctLinkColor;
+$linkColorDark: color.scale($distinctLinkColor, $lightness: -20%);
+$linkColorHover: color.scale($distinctLinkColor, $lightness: -50%);
+$selectionBackgroundColor: $emacsLightColor; // Changed from $selection for better light theme contrast
+
+// コードフォント
+$codeFont:
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
+
+// フォントサイズ設定
+$mainFontSize: 32px;
+$mainFont: "Source Han Sans", Helvetica, sans-serif;
+$headingFont: "Source Han Sans", Helvetica, sans-serif;
+$headingLineHeight: 1.2;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+
+// 見出しサイズ
+$heading1Size: 2.5em;
+$heading2Size: 2.5em;
+$heading3Size: 0.75em;
+$heading4Size: 1.4em;
+$heading5Size: 0.75em;
+$emphasisSize: 1.2em;
+
+// オーバーレイ要素
+$overlayElementBgColor: 126, 90, 182; // emacsColorのRGB値
+$overlayElementFgColor: 240, 240, 240;
+
+// ダークスライド背景に対するテキストカラー
+@include dark-bg-text-color(#fff);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+/*-- scss:rules --*/
+
+// カスタム追加
+.reveal {
+    // 図のキャプション
+    .figure .figure-number,
+    .figure p {
+        font-size: 0.4em;
+    }
+    .figure p .figure-number {
+        font-size: 1em !important; /* 親要素と同じサイズに */
+    }
+
+    ol {
+        font-size: 90%;
+        line-height: 1.5;
+    }
+    ul {
+        font-size: 90%;
+        line-height: 1.5;
+    }
+    blockquote {
+        // border-left: 4px solid $blockquoteBorderColor; // Keep commented if not needed
+        position: relative;
+        // --- Modification Start ---
+        box-sizing: border-box; // Ensure padding is included within the width
+        padding: 1em 1.5em 1em 3em; // Re-introduce some right padding for text breathing room, adjust as needed (or keep 0em if preferred)
+        // --- Modification End ---
+        display: block; // Keep as block
+        background-color: $cardBackgroundColor;
+        color: $foreground;
+        border-radius: 4px;
+        font-style: italic;
+        font-family: Georgia, $headingFont, serif;
+
+        &::before {
+            content: "\201C";
+            font-family: Georgia, $headingFont, serif;
+            font-size: 4em;
+            color: rgba($blue, 0.6);
+            position: absolute;
+            left: 0.15em;
+            top: -0.05em;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        p {
+            margin-bottom: 0.5em;
+            position: relative;
+            z-index: 1;
+            // --- Optional Modification ---
+            // text-align: justify; // Justify text if needed, might help with right edge alignment
+            // --- Optional Modification End ---
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        // Citation style (no changes needed here for the spacing issue)
+        cite,
+        footer,
+        p:last-child > em {
+            display: block;
+            text-align: right;
+            font-style: normal;
+            font-size: 0.9em;
+            color: $comment;
+            margin-top: 0.8em;
+            position: relative;
+            z-index: 1;
+        }
+        p:last-child:not(:first-child) {
+            // Apply citation styles here if needed
+        }
+    }
+
+    .highlight {
+        color: $emacsColor;
+        font-weight: bold;
+    }
+
+    .tech-highlight {
+        color: $vimColor;
+        font-weight: bold;
+    }
+}
+.reveal .slides {
+    text-align: left;
+}
+
+// .reveal a {
+//     line-height: 1.5em;
+// }
+
+.reveal p {
+    // font-weight: 300;
+    font-weight: lighter;
+    // margin-top: 1.25em;
+}
+
+// title and headings
+
+#sec-title-slide {
+    text-align: left;
+    top: 140px;
+
+    h1.title {
+        color: $mainColor;
+        font-size: 1.4em;
+        font-weight: lighter;
+    }
+
+    p.subtitle {
+        color: $accent;
+        font-style: italic;
+        margin-top: 0em;
+        font-weight: lighter;
+        margin-bottom: 2.5rem;
+    }
+
+    .institute,
+    .quarto-title-affiliation,
+    .quarto-title-author-email {
+        font-style: italic;
+        font-size: 60%;
+        color: $subtleTextColor; // 変数使用
+    }
+
+    .author,
+    .quarto-title-author-name {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        font-size: 70%;
+    }
+
+    .quarto-title-authors {
+        display: flex;
+        justify-content: left;
+
+        .quarto-title-author {
+            padding-left: 0em;
+            padding-right: 0em;
+            width: 100%;
+        }
+    }
+
+    .date {
+        font-size: 70%;
+    }
+}
+
+#table-of-contents-section {
+    h2 {
+        font-size: $heading3Size;
+        display: block;
+        height: auto;
+        align-items: baseline;
+        margin-bottom: 1.25em;
+    }
+}
+
+.reveal h2 {
+    font-weight: lighter;
+}
+
+.reveal h3 {
+    font-weight: lighter;
+}
+
+.reveal h4 {
+    color: $emacsColor;
+    font-weight: lighter;
+}
+
+.reveal h5 {
+    color: $accent2;
+    font-weight: normal;
+    margin-top: 1.25em;
+}
+
+// alerts etc.
+
+.alert {
+    color: $accent2;
+}
+
+.fg {
+    color: var(--col, $overlayElementFgColor);
+}
+
+.bg {
+    background-color: var(--col, $background); // 変数使用 (#fff -> $background)
+    padding: 0.1em;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.emph {
+    color: $emp_fontc;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+// lists
+
+// Unordered lists
+
+.reveal ul {
+    font-weight: lighter;
+    padding-left: 16px;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+}
+
+// Ordered lists
+
+.reveal ol {
+    font-weight: lighter;
+    padding-left: 16px;
+    margin-top: 0.4em;
+    margin-bottom: 0.2em;
+
+    li::marker {
+        color: $accent;
+    }
+}
+
+// Beamer-style button link environment
+
+.button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: $accent;
+    border: 1px solid $accent;
+    color: #fff !important; // Button text color often needs high contrast, keeping #fff
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+    background-color: color.scale($accent, $lightness: -10%);
+    border-color: color.scale($accent, $lightness: -12%);
+}
+
+.button::before {
+    content: "▶";
+    margin-right: 5px;
+}
+
+// tables
+
+.reveal table {
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.5em;
+    overflow: auto;
+    max-height: 520px;
+}
+
+.reveal table th,
+.reveal table td {
+    border: none;
+    padding: 0.23em;
+    text-align: left;
+    font-weight: lighter;
+}
+
+/* Adds a bottom border to the table header row for distinction */
+.reveal table thead th,
+.reveal .slides table tr:last-child td,
+.reveal .slides table {
+    border-bottom: 2px solid $tableBorderBottomColor; // 変数使用
+}
+
+/* Make column headers bold */
+.reveal table thead th {
+    font-weight: bold;
+}
+
+/* Styling table captions */
+.reveal table caption {
+    color: $tableCaptionColor; // 変数使用
+    font-variant: small-caps;
+}
+
+// Special catch for etable environment
+.etable {
+    width: 100%;
+    height: calc(100% - 3em);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.etable img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/*セクションタイトルのcss*/
+.hide-menubar {
+    .reveal h2 {
+        display: flex;
+        align-items: center;
+        height: 600px;
+    }
+}
+
+// reveal-viewportに適用されるclassのcss
+.make-it-pop {
+    filter: drop-shadow(0 0 10px $purple); // purple -> $purple
+}
+
+/*********************************************
+ * SLIDES
+ *********************************************/
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal .floatright {
+    float: right;
+    text-align: right;
+}
+.reveal .leftcol {
+    float: left;
+    width: 48%;
+}
+.reveal .rightcol {
+    float: right;
+    width: 48%;
+}
+.reveal .leftcol30 {
+    float: left;
+    width: 28%;
+}
+.reveal .rightcol30 {
+    float: right;
+    width: 28%;
+}
+.reveal .leftcol40 {
+    float: left;
+    width: 38%;
+}
+.reveal .rightcol40 {
+    float: right;
+    width: 38%;
+}
+.reveal .leftcol60 {
+    float: left;
+    width: 58%;
+}
+.reveal .rightcol60 {
+    float: right;
+    width: 58%;
+}
+.reveal .leftcol70 {
+    float: left;
+    width: 68%;
+}
+.reveal .rightcol70 {
+    float: right;
+    width: 68%;
+}
+
+.reveal .emphasis {
+    text-align: center;
+    p {
+        text-align: center;
+        font-weight: bold;
+        color: $emp_fontc;
+        background-color: $emp_bg;
+        font-size: $emphasisSize;
+        display: inline-block;
+        padding: 0.5em 1em;
+        line-height: 1.8;
+    }
+}
+
+// Shapes (circles, squares, etc.)
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid $accent;
+}
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid $accent;
+}
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-left: 60px solid $accent;
+}
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid $accent;
+}
+
+.footpara {
+    display: inline;
+}
+.footdef {
+    text-align: left;
+}
+.footnotes {
+    padding-top: 2em;
+    font-size: 0.6em;
+}
+
+//Gantt chart
+.gantt {
+    display: grid;
+    border: 0;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 75px 125px -57px $ganttShadowColor; // 変数使用
+}
+.gantt__row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    background-color: $background; // 変数使用 (#fff -> $background)
+}
+.gantt__row:nth-child(odd) {
+    background-color: $ganttOddRowBgColor; // 変数使用
+}
+.gantt__row:nth-child(odd) .gantt__row-first {
+    background-color: $ganttOddRowBgColor; // 変数使用
+}
+// .gantt__row:nth-child(3) .gantt__row-bars { border-top: 0; } // These seem specific, leaving as is
+// .gantt__row:nth-child(3) .gantt__row-first { border-top: 0; }
+.gantt__row--empty {
+    background-color: $ganttEmptyRowBgColor !important; // 変数使用
+    z-index: 1;
+}
+.gantt__row--empty .gantt__row-first {
+    border-width: 1px 1px 0 0;
+}
+.gantt__row--lines {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    grid-template-columns: 150px repeat(12, 1fr);
+}
+.gantt__row--lines span {
+    display: block;
+    border-right: 1px solid $ganttLineColor; // 変数使用
+}
+.gantt__row--lines span.marker {
+    background-color: rgba(
+        10,
+        52,
+        68,
+        0.13
+    ); // Keeping specific color for marker overlay
+    z-index: 2;
+}
+.gantt__row--lines:after {
+    grid-row: 1;
+    grid-column: 0;
+    background-color: #1688b345; // Keeping specific color for line overlay
+    z-index: 2;
+    height: 100%;
+}
+.gantt__row--months {
+    color: $ganttMonthFgColor; // 変数使用
+    background-color: $ganttMonthBgColor !important; // 変数使用
+    border-bottom: 1px solid $ganttLineColor; // 変数使用
+    grid-template-columns: 150px repeat(12, 1fr);
+}
+.gantt__row--months .gantt__row-first {
+    border-top: 0 !important;
+    background-color: $ganttMonthBgColor !important; // 変数使用
+}
+.gantt__row--months span {
+    text-align: center;
+    font-size: 13px;
+    align-self: center;
+    font-weight: bold;
+    padding: 20px 0;
+}
+.gantt__row-first {
+    background-color: $background; // 変数使用 (#fff -> $background)
+    border-width: 1px 0 0 0;
+    border-color: $ganttLineColor; // 変数使用
+    border-style: solid;
+    padding: 15px 0;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+.gantt__row-bars {
+    list-style: none;
+    display: grid;
+    padding: 9px 0;
+    margin: 0;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 8px 0;
+    border-top: 1px solid color.scale($ganttLineColor, $lightness: -5%);
+}
+.gantt__row-bars li {
+    font-weight: 500;
+    text-align: left;
+    font-size: 14px;
+    min-height: 15px;
+    background-color: $ganttBarBgColor; // 変数使用
+    padding: 5px 12px;
+    color: $ganttBarFgColor; // 変数使用
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.gantt__row-bars li.stripes {
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        $ganttStripeOverlay 5px,
+        // 変数使用
+        $ganttStripeOverlay 12px // 変数使用
+    );
+}
+.gantt__row-bars li:before,
+.gantt__row-bars li:after {
+    content: "";
+    height: 100%;
+    top: 0;
+    z-index: 4;
+    position: absolute;
+    background-color: $ganttHandleOverlay; // 変数使用
+}
+.gantt__row-bars li:before {
+    left: 0;
+}
+.gantt__row-bars li:after {
+    right: 0;
+}
+
+// --- カードグリッド ---
+.card-grid {
+    display: grid;
+    gap: 60px; // ギャップを統一 (必要なら調整)
+    margin: 25px auto;
+    max-width: 1200px;
+    justify-content: center;
+
+    // カラム数修飾子
+    &--cols-2 {
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+    &--cols-3 {
+        grid-template-columns: repeat(3, minmax(280px, 1fr));
+    }
+    &--cols-4 {
+        grid-template-columns: repeat(4, minmax(280px, 1fr));
+    }
+
+    /* レスポンシブデザイン調整 */
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr; // スマホでは1カラム
+        &--cols-2,
+        &--cols-3,
+        &--cols-4 {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// --- 基本カードスタイル ---
+.card {
+    background-color: $cardBackgroundColor;
+    border-radius: 8px;
+    padding: 20px; // パディングを統一 (必要なら調整)
+    box-shadow: 0 2px 5px $cardShadowColor;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 0.75em; // 基本フォントサイズ (サービス紹介カードに合わせる)
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px $cardHoverShadowColor;
+    }
+
+    // --- カード要素 ---
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px; // マージン調整
+        color: $cardHeaderColor;
+    }
+
+    &__icon {
+        font-size: 1.4em; // アイコンサイズ
+        margin-right: 12px;
+        width: 1.5em;
+        text-align: center;
+        color: $iconDefaultColor; // デフォルトアイコン色
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.1em; // タイトルサイズ
+        font-weight: 600;
+    }
+
+    &__image-wrapper {
+        margin-bottom: 15px;
+        text-align: center; // 中央寄せ
+        margin: 0 auto; // Center the image
+    }
+
+    &__image {
+        width: 150px; // 画像サイズ (メンバー紹介に合わせる)
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid $tableBorderBottomColor;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    // 画像付きカード用のタイトルセクション
+    &__title-section {
+        margin-bottom: 15px;
+        text-align: center; // 中央寄せ
+
+        h3,
+        h4,
+        p {
+            // タイトルセクション内の要素のマージン調整
+            margin-top: 0;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .card__title-name {
+            // 名前用スタイル
+            color: $cardHeaderColor;
+            font-size: 1.6em; // 少し大きめ
+            font-weight: bold;
+        }
+
+        .card__title-sub {
+            // サブタイトル用スタイル
+            color: $subtleTextColor;
+            font-size: 1em; // 少し大きめ
+        }
+    }
+
+    &__content {
+        margin: 0;
+        line-height: 1.5;
+        flex-grow: 1; // 内容が少なくても高さを揃えるため
+
+        ul {
+            padding-left: 20px; // デフォルトのリストインデント
+            margin: 0; // デフォルトマージンリセット
+        }
+        li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+    }
+
+    // --- カード修飾子 ---
+
+    // 画像付きカード (メンバー紹介用)
+    &--with-image {
+        font-size: 0.4em; // メンバー紹介カードのフォントサイズ
+
+        .card__content {
+            margin-top: 15px;
+            border-top: 1px solid $tableBorderBottomColor;
+            padding-top: 15px;
+            font-size: 1em; // 親の0.4emに対して1em = 0.4em
+            text-align: left; // 左寄せ
+
+            ul {
+                padding-left: 1.2em;
+                list-style-position: outside;
+            }
+            li {
+                margin-bottom: 0.5em;
+                color: $mainColor;
+                &::marker {
+                    color: $accent;
+                }
+            }
+            strong,
+            b {
+                color: $accent2;
+                font-weight: bold;
+            }
+        }
+    }
+
+    // 価値カード (サービス紹介用)
+    &--value {
+        .card__header,
+        .card__icon {
+            // ヘッダーとアイコンの色を変更
+            color: $cardValueColor;
+        }
+    }
+
+    // 課題カード (例)
+    &--issue {
+        .card__header,
+        .card__icon {
+            color: $cardIssueColor;
+        }
+    }
+}
+
+// --- アイコン付きリスト (必要であれば) ---
+// .icon-list-wrapper は card__content 内で使う想定
+.icon-list-wrapper {
+    ul {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 25px; // 必要なら調整
+    }
+
+    li {
+        padding-left: 2.5em;
+        position: relative;
+        margin-bottom: 15px;
+        // line-height: 1.5;
+
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            width: 1.8em;
+            text-align: center;
+            color: $iconDefaultColor; // デフォルトアイコン色
+        }
+    }
+}
