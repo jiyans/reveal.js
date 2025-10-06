@@ -298,6 +298,10 @@ $overlayElementFgColor: 240, 240, 240;
     font-weight: lighter;
 }
 
+.reveal .slides section.left-align {
+  text-align: left;
+}
+
 .reveal h3 {
     color: $vimColor;
     font-weight: lighter;
@@ -699,3 +703,20 @@ $overlayElementFgColor: 240, 240, 240;
     right: 0;
 }
 
+
+.reveal table.grid-table {
+    border-collapse: collapse;
+    width: 100%; 
+    font-size: 0.75em;
+}
+
+.reveal table.grid-table td,
+.reveal table.grid-table th {
+    border: 2px solid #666;
+    padding: 8px;
+}
+
+.reveal table.grid-table th {
+    background-color: rgba(100, 100, 100, 0.1);
+    font-weight: bold;
+}
