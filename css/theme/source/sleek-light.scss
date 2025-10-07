@@ -1,8 +1,5 @@
 /**
  * SleekCode light theme of reveal.js.
- *
- * By Kaoru Babasaki. Based on white.(s)css by Hakim El Hattab, http://hakim.se
- *
  */
 
 // Default mixins and settings -----------------
@@ -99,7 +96,7 @@ $codeFont:
     monospace;
 
 // フォントサイズ設定
-$mainFontSize: 40px;  // or 40px, 44px
+$mainFontSize: 32px;  // Reduced from 40px
 $mainFont: "Source Han Serif", Helvetica, sans-serif;
 $headingFont: "Source Han Serif", Helvetica, sans-serif;
 
@@ -111,8 +108,8 @@ $headingFontWeight: 600;
 
 // 見出しサイズ
 $heading1Size: 2.5em;
-$heading2Size: 2.5em;
-$heading3Size: 0.75em;
+$heading2Size: 2.0em;
+$heading3Size: 1.2em;  // Increased from 0.75em - these are slide titles!
 $heading4Size: 1.4em;
 $heading5Size: 0.75em;
 $emphasisSize: 1.2em;
@@ -340,7 +337,7 @@ $overlayElementFgColor: 240, 240, 240;
 .emph {
     color: $emp_fontc;
     font-weight: bold;
-    font-size: 40px;
+    font-size: $emphasisSize;  // Use variable instead of hardcoded 40px
 }
 
 // lists
@@ -719,4 +716,155 @@ $overlayElementFgColor: 240, 240, 240;
 .reveal table.grid-table th {
     background-color: rgba(100, 100, 100, 0.1);
     font-weight: bold;
+}
+
+
+.reveal pre {
+    width: 95%;
+    margin: 20px auto;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.reveal pre code {
+    font-size: 0.85em;
+    padding: 1.2em;
+    line-height: 1.5;
+}
+
+/* Better results block styling */
+.result-block {
+    background: #f8f9fa;
+    border-left: 4px solid #4a90e2;
+    padding: 15px 20px;
+    margin: 20px auto;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Figure styling */
+.reveal .figure {
+    margin: 20px auto;
+}
+
+.reveal .figure p {
+    margin: 10px 0;
+}
+
+/* Caption styling */
+.reveal .figure .figure-number {
+    color: #666;
+    font-weight: bold;
+}
+
+//  Make slide scrollable 
+.scrollable {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* Better code block styling with rounded corners */
+.reveal pre {
+    width: 95%;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.reveal pre code {
+    border-radius: 12px;
+}
+.reveal pre.example {
+    background: #2e3440;
+    color: #d8dee9;
+    border: 1px solid #4c566a;
+    border-radius: 12px;
+    padding: 1.5em 1em 0.6em 1em;  /* Reduced: top, right, bottom, left */
+    margin: 1em auto;
+    width: auto;  /* Let Reveal decide */
+    max-width: 80%;  /* Just set a maximum */
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+    font-size: 0.45em;  /* Relative to parent */
+    line-height: 1.2;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: auto;
+}
+
+.reveal pre.example::before {
+    content: '○ ○ ○  出力';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #3b4252;
+    color: #88c0d0;
+    padding: 0.3em 0.8em;
+    border-radius: 12px 12px 0 0;
+    font-size: 0.65em;
+    font-weight: bold;
+}
+
+/* Only set max-height on scrollable slides if needed */
+.scrollable .reveal pre.example {
+    max-height: 50vh;  /* Viewport-relative */
+}
+
+/* Custom scrollbar styling for terminal output */
+.reveal pre.example::-webkit-scrollbar {
+    height: 6px;  /* Thinner scrollbar */
+    width: 6px;
+}
+
+.reveal pre.example::-webkit-scrollbar-track {
+    background: #3b4252;
+}
+
+.reveal pre.example::-webkit-scrollbar-thumb {
+    background: #4c566a;
+    border-radius: 4px;
+}
+
+.reveal pre.example::-webkit-scrollbar-thumb:hover {
+    background: #5e81ac;
+}
+/* Better results block styling */
+.result-block {
+    background: #f8f9fa;
+    border-left: 4px solid #4a90e2;
+    padding: 15px 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Figure styling */
+.reveal .figure {
+    margin: 20px auto;
+}
+
+.reveal .figure p {
+    margin: 10px 0;
+}
+
+/* Caption styling */
+.reveal .figure .figure-number {
+    color: #666;
+    font-weight: bold;
+}
+
+/* Alternative: Lighter terminal theme (if you prefer) */
+.reveal pre.example.light-terminal {
+    background: #f4f4f4;
+    color: #2e3440;
+    border: 1px solid #d8dee9;
+}
+
+.reveal pre.example.light-terminal::before {
+    background: #e5e9f0;
+    color: #5e81ac;
 }

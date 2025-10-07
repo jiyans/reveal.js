@@ -1,9 +1,6 @@
 @charset "UTF-8";
 /**
  * SleekCode light theme of reveal.js.
- *
- * By Kaoru Babasaki. Based on white.(s)css by Hakim El Hattab, http://hakim.se
- *
  */
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
 @import url(./fonts/source-han-serif/source-han-serif.css);
@@ -23,7 +20,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 :root {
   --r-background-color: #F0F1EB;
   --r-main-font: Source Han Serif, Helvetica, sans-serif;
-  --r-main-font-size: 40px;
+  --r-main-font-size: 32px;
   --r-main-color: #222;
   --r-block-margin: 12px;
   --r-heading-margin: 0 0 12px 0;
@@ -36,8 +33,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   --r-heading-font-weight: 600;
   --r-heading1-text-shadow: none;
   --r-heading1-size: 2.5em;
-  --r-heading2-size: 2.5em;
-  --r-heading3-size: 0.75em;
+  --r-heading2-size: 2em;
+  --r-heading3-size: 1.2em;
   --r-heading4-size: 1.4em;
   --r-code-font: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   --r-link-color: #107895;
@@ -487,7 +484,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 #table-of-contents-section h2 {
-  font-size: 0.75em;
+  font-size: 1.2em;
   display: block;
   height: auto;
   align-items: baseline;
@@ -538,7 +535,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .emph {
   color: rgb(100.5714285714, 66.7428571429, 150.8571428571);
   font-weight: bold;
-  font-size: 40px;
+  font-size: 1.2em;
 }
 
 .reveal ul {
@@ -914,4 +911,155 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal table.grid-table th {
   background-color: rgba(100, 100, 100, 0.1);
   font-weight: bold;
+}
+
+.reveal pre {
+  width: 95%;
+  margin: 20px auto;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.reveal pre code {
+  font-size: 0.85em;
+  padding: 1.2em;
+  line-height: 1.5;
+}
+
+/* Better results block styling */
+.result-block {
+  background: #f8f9fa;
+  border-left: 4px solid #4a90e2;
+  padding: 15px 20px;
+  margin: 20px auto;
+  border-radius: 4px;
+  font-family: "Monaco", "Menlo", "Courier New", monospace;
+  font-size: 0.9em;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Figure styling */
+.reveal .figure {
+  margin: 20px auto;
+}
+
+.reveal .figure p {
+  margin: 10px 0;
+}
+
+/* Caption styling */
+.reveal .figure .figure-number {
+  color: #666;
+  font-weight: bold;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* Better code block styling with rounded corners */
+.reveal pre {
+  width: 95%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reveal pre code {
+  border-radius: 12px;
+}
+
+.reveal pre.example {
+  background: #2e3440;
+  color: #d8dee9;
+  border: 1px solid #4c566a;
+  border-radius: 12px;
+  padding: 1.5em 1em 0.6em 1em; /* Reduced: top, right, bottom, left */
+  margin: 1em auto;
+  width: auto; /* Let Reveal decide */
+  max-width: 80%; /* Just set a maximum */
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Courier New", monospace;
+  font-size: 0.45em; /* Relative to parent */
+  line-height: 1.2;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: auto;
+}
+
+.reveal pre.example::before {
+  content: "○ ○ ○  出力";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #3b4252;
+  color: #88c0d0;
+  padding: 0.3em 0.8em;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.65em;
+  font-weight: bold;
+}
+
+/* Only set max-height on scrollable slides if needed */
+.scrollable .reveal pre.example {
+  max-height: 50vh; /* Viewport-relative */
+}
+
+/* Custom scrollbar styling for terminal output */
+.reveal pre.example::-webkit-scrollbar {
+  height: 6px; /* Thinner scrollbar */
+  width: 6px;
+}
+
+.reveal pre.example::-webkit-scrollbar-track {
+  background: #3b4252;
+}
+
+.reveal pre.example::-webkit-scrollbar-thumb {
+  background: #4c566a;
+  border-radius: 4px;
+}
+
+.reveal pre.example::-webkit-scrollbar-thumb:hover {
+  background: #5e81ac;
+}
+
+/* Better results block styling */
+.result-block {
+  background: #f8f9fa;
+  border-left: 4px solid #4a90e2;
+  padding: 15px 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  font-family: "Monaco", "Menlo", "Courier New", monospace;
+  font-size: 0.9em;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Figure styling */
+.reveal .figure {
+  margin: 20px auto;
+}
+
+.reveal .figure p {
+  margin: 10px 0;
+}
+
+/* Caption styling */
+.reveal .figure .figure-number {
+  color: #666;
+  font-weight: bold;
+}
+
+/* Alternative: Lighter terminal theme (if you prefer) */
+.reveal pre.example.light-terminal {
+  background: #f4f4f4;
+  color: #2e3440;
+  border: 1px solid #d8dee9;
+}
+
+.reveal pre.example.light-terminal::before {
+  background: #e5e9f0;
+  color: #5e81ac;
 }
