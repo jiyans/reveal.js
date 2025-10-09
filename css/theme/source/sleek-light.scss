@@ -126,6 +126,14 @@ $overlayElementFgColor: 240, 240, 240;
 // ---------------------------------------------
 
 /*-- scss:rules --*/
+.reveal svg text[font-family] {
+    font-family: 'Source Han Serif', 'IPAMincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif !important;
+}
+
+.reveal mjx-container svg text,
+.reveal .MathJax_SVG svg text {
+    font-family: 'Source Han Serif', 'IPAMincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif !important;
+}
 
 .reveal {
     a {
