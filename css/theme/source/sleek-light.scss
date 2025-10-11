@@ -876,3 +876,54 @@ $overlayElementFgColor: 240, 240, 240;
     background: #e5e9f0;
     color: #5e81ac;
 }
+
+// Survey announcement box
+.reveal .survey-announce {
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    margin: 30px auto;
+    max-width: 90%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    h3 {
+        color: #222;
+        margin-bottom: 20px;
+        font-weight: 400;
+        font-size: 1.3em;
+        letter-spacing: 0.05em;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 25px;
+        font-weight: 300;
+        font-size: 0.95em;
+    }
+
+    a {
+        display: inline-block;
+        padding: 12px 28px;
+        background: #222;
+        color: white;
+        text-decoration: none;
+        border: 1px solid #222;
+        font-weight: 300;
+        font-size: 0.95em;
+        letter-spacing: 0.1em;
+        transition: all 0.2s;
+
+        &:hover {
+            background: #fff;
+            color: #222;
+        }
+    }
+
+    .deadline {
+        color: #999;
+        margin-top: 20px;
+        font-size: 0.85em;
+        font-weight: 300;
+    }
+}

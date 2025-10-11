@@ -1072,3 +1072,48 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   background: #e5e9f0;
   color: #5e81ac;
 }
+
+.reveal .survey-announce {
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #d3d3d3;
+  margin: 30px auto;
+  max-width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.reveal .survey-announce h3 {
+  color: #222;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 1.3em;
+  letter-spacing: 0.05em;
+}
+.reveal .survey-announce p {
+  color: #666;
+  margin-bottom: 25px;
+  font-weight: 300;
+  font-size: 0.95em;
+}
+.reveal .survey-announce a {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #222;
+  color: white;
+  text-decoration: none;
+  border: 1px solid #222;
+  font-weight: 300;
+  font-size: 0.95em;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+}
+.reveal .survey-announce a:hover {
+  background: #fff;
+  color: #222;
+}
+.reveal .survey-announce .deadline {
+  color: #999;
+  margin-top: 20px;
+  font-size: 0.85em;
+  font-weight: 300;
+}
