@@ -853,6 +853,15 @@ $overlayElementFgColor: 240, 240, 240;
 /* Figure styling */
 .reveal .figure {
     margin: 20px auto;
+    max-width: 100%;
+
+    img {
+        max-width: 100%;
+        max-height: 500px;
+        height: auto !important;
+        width: auto !important;
+        object-fit: contain;
+    }
 }
 
 .reveal .figure p {
@@ -863,6 +872,24 @@ $overlayElementFgColor: 240, 240, 240;
 .reveal .figure .figure-number {
     color: #666;
     font-weight: bold;
+}
+
+/* Better scaling for images in columns */
+.reveal .leftcol .figure img,
+.reveal .rightcol .figure img,
+.reveal .leftcol30 .figure img,
+.reveal .rightcol30 .figure img,
+.reveal .leftcol40 .figure img,
+.reveal .rightcol40 .figure img,
+.reveal .leftcol60 .figure img,
+.reveal .rightcol60 .figure img,
+.reveal .leftcol70 .figure img,
+.reveal .rightcol70 .figure img {
+    max-width: 100%;
+    max-height: 450px;
+    height: auto !important;
+    width: auto !important;
+    object-fit: contain;
 }
 
 /* Alternative: Lighter terminal theme (if you prefer) */
