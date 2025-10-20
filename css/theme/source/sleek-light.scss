@@ -476,6 +476,30 @@ $overlayElementFgColor: 240, 240, 240;
     // text-align: left;
 // }
 
+
+.reveal .leftcol ul,
+.reveal .leftcol30 ul,
+.reveal .leftcol40 ul,
+.reveal .leftcol60 ul,
+.reveal .leftcol70 ul {
+  margin-left: 0 !important;
+  padding-left: 1.2em !important;
+  list-style-position: outside;
+}
+
+.reveal .leftcol ul + ul,
+.reveal .leftcol30 ul + ul,
+.reveal .leftcol40 ul + ul,
+.reveal .leftcol60 ul + ul,
+.reveal .leftcol70 ul + ul {
+  margin-left: 0 !important;
+}
+
+/* Tweak spacing around the pseudo-headings (bold paragraphs) */
+.reveal .leftcol p + ul {
+  margin-top: 0.3em;
+}
+
 .reveal .floatright {
     float: right;
     text-align: right;
@@ -954,3 +978,4 @@ $overlayElementFgColor: 240, 240, 240;
         font-weight: 300;
     }
 }
+
