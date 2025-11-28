@@ -5,6 +5,7 @@
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
 @import url(./fonts/source-han-serif/source-han-serif.css);
 @import url(./fonts/source-han-sans/source-han-sans.css);
+@import url("https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap");
 html * {
   color-profile: sRGB;
   rendering-intent: auto;
@@ -18,7 +19,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  * GLOBAL STYLES
  *********************************************/
 :root {
-  --r-background-color: #F0F1EB;
+  --r-background-color: #f0f1eb;
   --r-main-font: Source Han Serif, Helvetica, sans-serif;
   --r-main-font-size: 32px;
   --r-main-color: #222;
@@ -47,7 +48,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .reveal-viewport {
-  background: #F0F1EB;
+  background: #f0f1eb;
   background-color: var(--r-background-color);
 }
 
@@ -375,10 +376,28 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal a {
   font-weight: bold; /* Makes the text bold */
+  line-height: 1.5em;
 }
 .reveal slides a::before {
   content: " 🔗 "; /* Adds a chain link emoji after each link */
   font-size: 0.7em; /* Makes the icon slightly smaller */
+}
+.reveal section a::before {
+  content: " 🔗 "; /* Adds a chain link emoji after each link */
+  font-size: 0.8em; /* Makes the icon slightly smaller */
+}
+.reveal section a {
+  color: #107895; /* Using the color from your h3 elements */
+  font-weight: bold; /* Makes the text bold */
+  border-bottom: 1px dotted #107895; /* Adds a dotted underline */
+}
+.reveal div.slide-number {
+  right: 2.7em;
+  bottom: 3.6em;
+  z-index: 50;
+}
+.reveal section {
+  top: 0%;
 }
 .reveal .figure .figure-number,
 .reveal .figure p {
@@ -446,10 +465,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   font-weight: bold;
 }
 
-.reveal p {
-  font-weight: lighter;
-}
-
 #sec-title-slide {
   text-align: left;
   top: 140px;
@@ -457,13 +472,11 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 #sec-title-slide h1.title {
   color: #222;
   font-size: 1.4em;
-  font-weight: lighter;
 }
 #sec-title-slide p.subtitle {
   color: #02992f;
   font-style: italic;
   margin-top: 0em;
-  font-weight: lighter;
   margin-bottom: 2.5rem;
 }
 #sec-title-slide .institute,
@@ -500,23 +513,17 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   margin-bottom: 1.25em;
 }
 
-.reveal h2 {
-  font-weight: lighter;
-}
-
 .reveal .slides section.left-align {
   text-align: left;
 }
 
 .reveal h3 {
   color: #02992f;
-  font-weight: lighter;
   text-align: left;
 }
 
 .reveal h4 {
   color: #7f5ab6;
-  font-weight: lighter;
   text-align: left;
 }
 
@@ -535,7 +542,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .bg {
-  background-color: var(--col, #F0F1EB);
+  background-color: var(--col, #f0f1eb);
   padding: 0.1em;
   border-radius: 5px;
   display: inline-block;
@@ -548,14 +555,25 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .reveal ul {
-  font-weight: lighter;
   padding-left: 16px;
   margin-top: 0.4em;
   margin-bottom: 0.2em;
 }
 
+.reveal ul ul {
+  list-style: none;
+}
+
+.reveal ul ul li:before {
+  content: "→";
+  color: #70aebf;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  margin-right: 0.5em;
+}
+
 .reveal ol {
-  font-weight: lighter;
   padding-left: 16px;
   margin-top: 0.4em;
   margin-bottom: 0.2em;
@@ -604,7 +622,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   border: none;
   padding: 0.23em;
   text-align: left;
-  font-weight: lighter;
 }
 
 /* Adds a bottom border to the table header row for distinction */
@@ -805,7 +822,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .gantt__row {
   display: grid;
   grid-template-columns: 150px 1fr;
-  background-color: #F0F1EB;
+  background-color: #f0f1eb;
 }
 
 .gantt__row:nth-child(odd) {
@@ -872,7 +889,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .gantt__row-first {
-  background-color: #F0F1EB;
+  background-color: #f0f1eb;
   border-width: 1px 0 0 0;
   border-color: rgba(0, 0, 0, 0.1);
   border-style: solid;
@@ -1077,8 +1094,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal .figure img {
   max-width: 100%;
   max-height: 500px;
-  height: auto !important;
-  width: auto !important;
+  height: auto;
+  width: auto;
   object-fit: contain;
 }
 
@@ -1165,4 +1182,209 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   margin-top: 20px;
   font-size: 0.85em;
   font-weight: 300;
+}
+
+.Cube {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  font-size: 50px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s;
+  perspective: 9999px;
+  color: #333;
+  margin: -40px 0 0 -40px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -37px;
+  top: 65px;
+  opacity: 1;
+}
+
+.Cube.panelLoad {
+  z-index: 11;
+  top: 70%;
+  margin-top: 2em;
+  -webkit-animation: panel 2.2s infinite forwards;
+  animation: panel 2.2s infinite forwards;
+}
+
+.Cube.panelLoad .cube-face {
+  color: black;
+  box-shadow: inset 0 0 0 1px #111, 0 0 1px 1px #111;
+}
+
+.Cube .cube-face {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  /* background: #d2e5ff; */
+  background: white;
+  box-shadow: inset 0 0 0 1px #333, 0 0 1px 1px #333;
+  opacity: 1;
+}
+
+.Cube .cube-face-front {
+  transform: translate3d(0, 0, 40px);
+  -webkit-transform: translate3d(0, 0, 40px);
+  font-size: 57px;
+}
+
+.Cube .cube-face-back {
+  -webkit-transform: rotateY(180deg) translate3d(0, 0, 40px);
+  transform: rotateY(180deg) translate3d(0, 0, 40px);
+}
+
+.Cube .cube-face-left {
+  -webkit-transform: rotateY(-90deg) translate3d(0, 0, 40px);
+  transform: rotateY(-90deg) translate3d(0, 0, 40px);
+}
+
+.Cube .cube-face-right {
+  -webkit-transform: rotateY(90deg) translate3d(0, 0, 40px);
+  transform: rotateY(90deg) translate3d(0, 0, 40px);
+}
+
+.Cube .cube-face-top {
+  -webkit-transform: rotateX(90deg) translate3d(0, 0, 40px);
+  transform: rotateX(90deg) translate3d(0, 0, 40px);
+}
+
+.Cube .cube-face-bottom {
+  -webkit-transform: rotateX(-90deg) translate3d(0, 0, 40px);
+  transform: rotateX(-90deg) translate3d(0, 0, 40px);
+}
+
+@-webkit-keyframes panel {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateY(90deg) rotateZ(0deg);
+  }
+  40% {
+    -webkit-transform: rotateX(45deg) rotateZ(45deg);
+  }
+  60% {
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  80% {
+    -webkit-transform: rotateX(310deg) rotateZ(230deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+@keyframes panel {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg);
+    transform: rotateY(0deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateY(90deg) rotateZ(0deg);
+    transform: rotateY(90deg) rotateZ(0deg);
+  }
+  40% {
+    -webkit-transform: rotateX(45deg) rotateZ(45deg);
+    transform: rotateX(45deg) rotateZ(45deg);
+  }
+  60% {
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+    transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  80% {
+    -webkit-transform: rotateX(310deg) rotateZ(230deg);
+    transform: rotateX(310deg) rotateZ(230deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg) rotateZ(360deg);
+    transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+.restab table {
+  width: 100%;
+  height: 70%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.restab table th,
+.restab table td {
+  /* padding: 8px; */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.restab table th {
+  background-color: #f2f2f2;
+}
+
+.restab table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.restab table td:first-child {
+  font-weight: lighter;
+}
+
+.restab {
+  max-height: 40vh;
+  overflow-y: scroll;
+  border-right: 1px solid #ccc;
+}
+
+.restab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 255, 240, 0), rgb(255, 255, 240)); /* Ivory color */
+  pointer-events: none;
+}
+
+section.two-column-grid {
+  display: flex !important; /* Use flex to manage alignment in the container */
+  flex-direction: column; /* Ensure normal stacking in flow */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally if needed */
+  height: 100vh; /* Make the section fill full viewport */
+  width: 100%; /* Ensure the width fills the viewport */
+}
+
+/* Set the grid layout within slide-contents */
+section.two-column-grid .slide-contents {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 1.5rem;
+  align-items: center; /* Ensure grid items are centered */
+  justify-items: center; /* Horizontally center grid items */
+  height: 100%; /* Slide contents will now stretch to parent height */
+  width: 100%; /* Ensure it also takes full width */
+}
+
+section.two-column-grid h2,
+section.two-column-grid h3 {
+  align-self: flex-start; /* Align to the top left horizontally */
+  margin: 0; /* Reset default margin */
+  width: 100%; /* Expand to the entire width of the section */
+  text-align: left; /* Ensure the text aligns left */
+}
+
+section.two-column-grid .slide-contents aside.notes ul,
+section.two-column-grid .slide-contents aside.notes ol {
+  /* Base line-height slightly relaxed */
+  line-height: 1.4;
+}
+
+/* If your base font size is reasonable, you can even do: */
+section.two-column-grid .slide-contents aside.notes {
+  font-size: clamp(0.95rem, 1.1vh + 0.6rem, 1.3rem);
+  line-height: 1.4;
 }

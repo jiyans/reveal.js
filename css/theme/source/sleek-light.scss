@@ -12,15 +12,16 @@
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
 @import url(./fonts/source-han-serif/source-han-serif.css);
 @import url(./fonts/source-han-sans/source-han-sans.css);
+@import url("https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap");
 
 html * {
-    color-profile: sRGB;
-    rendering-intent: auto;
+  color-profile: sRGB;
+  rendering-intent: auto;
 }
 
 // ---------------------------------------------
 // カスタム変数
-$background: #F0F1EB;
+$background: #f0f1eb;
 $foreground: #222;
 $selection: #44475a; // Note: This seems dark for a light theme selection, consider $emacsLightColor
 $comment: #6272a4;
@@ -29,7 +30,7 @@ $orange: #ffb86c;
 $yellow: #f1fa8c;
 $green: #50fa7b;
 $purple: #bd93f9;
-$cyan: #51483D;
+$cyan: #51483d;
 $pink: #ff79c6;
 $blue: #61afef; // Doom One Blue (Used for links)
 $emacsColor: #7f5ab6; // メインブランドカラー（Emacs由来）
@@ -87,16 +88,16 @@ $selectionBackgroundColor: $emacsLightColor; // Changed from $selection for bett
 
 // コードフォント
 $codeFont:
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    Liberation Mono,
-    Courier New,
-    monospace;
+  SFMono-Regular,
+  Menlo,
+  Monaco,
+  Consolas,
+  Liberation Mono,
+  Courier New,
+  monospace;
 
 // フォントサイズ設定
-$mainFontSize: 32px;  // Reduced from 40px
+$mainFontSize: 32px; // Reduced from 40px
 $mainFont: "Source Han Serif", Helvetica, sans-serif;
 $headingFont: "Source Han Serif", Helvetica, sans-serif;
 
@@ -108,8 +109,8 @@ $headingFontWeight: 600;
 
 // 見出しサイズ
 $heading1Size: 2.5em;
-$heading2Size: 2.0em;
-$heading3Size: 1.2em;  // Increased from 0.75em - these are slide titles!
+$heading2Size: 2em;
+$heading3Size: 1.2em; // Increased from 0.75em - these are slide titles!
 $heading4Size: 1.4em;
 $heading5Size: 0.75em;
 $emphasisSize: 1.2em;
@@ -117,7 +118,6 @@ $emphasisSize: 1.2em;
 // オーバーレイ要素
 $overlayElementBgColor: 126, 90, 182; // emacsColorのRGB値
 $overlayElementFgColor: 240, 240, 240;
-
 // ダークスライド背景に対するテキストカラー
 @include dark-bg-text-color(#fff);
 
@@ -127,180 +127,204 @@ $overlayElementFgColor: 240, 240, 240;
 
 /*-- scss:rules --*/
 .reveal svg text[font-family] {
-    font-family: 'Source Han Serif', 'IPAMincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif !important;
+  font-family:
+    "Source Han Serif", "IPAMincho", "Hiragino Mincho ProN", "Yu Mincho", serif !important;
 }
 
 .reveal mjx-container svg text,
 .reveal .MathJax_SVG svg text {
-    font-family: 'Source Han Serif', 'IPAMincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif !important;
+  font-family:
+    "Source Han Serif", "IPAMincho", "Hiragino Mincho ProN", "Yu Mincho", serif !important;
 }
 
 .reveal {
-    a {
-        font-weight: bold; /* Makes the text bold */
-    }
-    slides a::before {
-        content: " 🔗 "; /* Adds a chain link emoji after each link */
-        font-size: 0.7em; /* Makes the icon slightly smaller */
+  a {
+    font-weight: bold; /* Makes the text bold */
+    line-height: 1.5em;
+  }
+  slides a::before {
+    content: " 🔗 "; /* Adds a chain link emoji after each link */
+    font-size: 0.7em; /* Makes the icon slightly smaller */
+  }
+
+  section a::before {
+    content: " 🔗 "; /* Adds a chain link emoji after each link */
+    font-size: 0.8em; /* Makes the icon slightly smaller */
+  }
+
+  section a {
+    color: #107895; /* Using the color from your h3 elements */
+    font-weight: bold; /* Makes the text bold */
+    border-bottom: 1px dotted #107895; /* Adds a dotted underline */
+  }
+
+  div.slide-number {
+    right: 2.7em;
+    bottom: 3.6em;
+    z-index: 50;
+  }
+
+  section {
+    top: 0%;
+  }
+
+  // 図のキャプション
+  .figure .figure-number,
+  .figure p {
+    font-size: 0.8em;
+  }
+  .figure p .figure-number {
+    font-size: 1em !important; /* 親要素と同じサイズに */
+  }
+
+  ol {
+    font-size: 90%;
+    line-height: 1.5;
+  }
+  ul {
+    font-size: 90%;
+    line-height: 1.5;
+  }
+  blockquote {
+    // border-left: 4px solid $blockquoteBorderColor; // Keep commented if not needed
+    position: relative;
+    // --- Modification Start ---
+    box-sizing: border-box; // Ensure padding is included within the width
+    padding: 1em 1.5em 1em 3em; // Re-introduce some right padding for text breathing room, adjust as needed (or keep 0em if preferred)
+    // --- Modification End ---
+    display: block; // Keep as block
+    background-color: $cardBackgroundColor;
+    color: $foreground;
+    border-radius: 4px;
+    font-style: italic;
+    font-family: Georgia, $headingFont, serif;
+
+    &::before {
+      content: "\201C";
+      font-family: Georgia, $headingFont, serif;
+      font-size: 4em;
+      color: rgba($blue, 0.6);
+      position: absolute;
+      left: 0.15em;
+      top: -0.05em;
+      line-height: 1;
+      z-index: 0;
     }
 
-    // 図のキャプション
-    .figure .figure-number,
-    .figure p {
-        font-size: 0.8em;
-    }
-    .figure p .figure-number {
-        font-size: 1em !important; /* 親要素と同じサイズに */
-    }
+    p {
+      margin-bottom: 0.5em;
+      position: relative;
+      z-index: 1;
+      // --- Optional Modification ---
+      // text-align: justify; // Justify text if needed, might help with right edge alignment
+      // --- Optional Modification End ---
 
-    ol {
-        font-size: 90%;
-        line-height: 1.5;
-    }
-    ul {
-        font-size: 90%;
-        line-height: 1.5;
-    }
-    blockquote {
-        // border-left: 4px solid $blockquoteBorderColor; // Keep commented if not needed
-        position: relative;
-        // --- Modification Start ---
-        box-sizing: border-box; // Ensure padding is included within the width
-        padding: 1em 1.5em 1em 3em; // Re-introduce some right padding for text breathing room, adjust as needed (or keep 0em if preferred)
-        // --- Modification End ---
-        display: block; // Keep as block
-        background-color: $cardBackgroundColor;
-        color: $foreground;
-        border-radius: 4px;
-        font-style: italic;
-        font-family: Georgia, $headingFont, serif;
-
-        &::before {
-            content: "\201C";
-            font-family: Georgia, $headingFont, serif;
-            font-size: 4em;
-            color: rgba($blue, 0.6);
-            position: absolute;
-            left: 0.15em;
-            top: -0.05em;
-            line-height: 1;
-            z-index: 0;
-        }
-
-        p {
-            margin-bottom: 0.5em;
-            position: relative;
-            z-index: 1;
-            // --- Optional Modification ---
-            // text-align: justify; // Justify text if needed, might help with right edge alignment
-            // --- Optional Modification End ---
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        // Citation style (no changes needed here for the spacing issue)
-        cite,
-        footer,
-        p:last-child > em {
-            display: block;
-            text-align: right;
-            font-style: normal;
-            font-size: 0.9em;
-            color: $comment;
-            margin-top: 0.8em;
-            position: relative;
-            z-index: 1;
-        }
-        p:last-child:not(:first-child) {
-            // Apply citation styles here if needed
-        }
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
-    .highlight {
-        color: $emacsColor;
-        font-weight: bold;
+    // Citation style (no changes needed here for the spacing issue)
+    cite,
+    footer,
+    p:last-child > em {
+      display: block;
+      text-align: right;
+      font-style: normal;
+      font-size: 0.9em;
+      color: $comment;
+      margin-top: 0.8em;
+      position: relative;
+      z-index: 1;
     }
+    p:last-child:not(:first-child) {
+      // Apply citation styles here if needed
+    }
+  }
 
-    .tech-highlight {
-        color: $vimColor;
-        font-weight: bold;
-    }
+  .highlight {
+    color: $emacsColor;
+    font-weight: bold;
+  }
+
+  .tech-highlight {
+    color: $vimColor;
+    font-weight: bold;
+  }
 }
 // .reveal a {
 //     line-height: 1.5em;
 // }
 
 .reveal p {
-    // font-weight: 300;
-    font-weight: lighter;
-    // margin-top: 1.25em;
+  // font-weight: 300;
+  // font-weight: lighter;
+  // margin-top: 1.25em;
 }
 
 // title and headings
 
 #sec-title-slide {
-    text-align: left;
-    top: 140px;
+  text-align: left;
+  top: 140px;
 
-    h1.title {
-        color: $mainColor;
-        font-size: 1.4em;
-        font-weight: lighter;
+  h1.title {
+    color: $mainColor;
+    font-size: 1.4em;
+    // font-weight: lighter;
+  }
+
+  p.subtitle {
+    color: $accent;
+    font-style: italic;
+    margin-top: 0em;
+    // font-weight: lighter;
+    margin-bottom: 2.5rem;
+  }
+
+  .institute,
+  .quarto-title-affiliation,
+  .quarto-title-author-email {
+    font-style: italic;
+    font-size: 60%;
+    color: $subtleTextColor; // 変数使用
+  }
+
+  .author,
+  .quarto-title-author-name {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 70%;
+  }
+
+  .quarto-title-authors {
+    display: flex;
+    justify-content: left;
+
+    .quarto-title-author {
+      padding-left: 0em;
+      padding-right: 0em;
+      width: 100%;
     }
+  }
 
-    p.subtitle {
-        color: $accent;
-        font-style: italic;
-        margin-top: 0em;
-        font-weight: lighter;
-        margin-bottom: 2.5rem;
-    }
-
-    .institute,
-    .quarto-title-affiliation,
-    .quarto-title-author-email {
-        font-style: italic;
-        font-size: 60%;
-        color: $subtleTextColor; // 変数使用
-    }
-
-    .author,
-    .quarto-title-author-name {
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-        font-size: 70%;
-    }
-
-    .quarto-title-authors {
-        display: flex;
-        justify-content: left;
-
-        .quarto-title-author {
-            padding-left: 0em;
-            padding-right: 0em;
-            width: 100%;
-        }
-    }
-
-    .date {
-        font-size: 70%;
-    }
+  .date {
+    font-size: 70%;
+  }
 }
 
 #table-of-contents-section {
-    h2 {
-        font-size: $heading3Size;
-        display: block;
-        height: auto;
-        align-items: baseline;
-        margin-bottom: 1.25em;
-    }
+  h2 {
+    font-size: $heading3Size;
+    display: block;
+    height: auto;
+    align-items: baseline;
+    margin-bottom: 1.25em;
+  }
 }
 
 .reveal h2 {
-    font-weight: lighter;
+  // font-weight: lighter;
 }
 
 .reveal .slides section.left-align {
@@ -308,44 +332,44 @@ $overlayElementFgColor: 240, 240, 240;
 }
 
 .reveal h3 {
-    color: $vimColor;
-    font-weight: lighter;
-    text-align: left;
+  color: $vimColor;
+  // font-weight: lighter;
+  text-align: left;
 }
 
 .reveal h4 {
-    color: $emacsColor;
-    font-weight: lighter;
-    text-align: left;
+  color: $emacsColor;
+  // font-weight: lighter;
+  text-align: left;
 }
 
 .reveal h5 {
-    color: $accent2;
-    font-weight: normal;
-    margin-top: 1.25em;
+  color: $accent2;
+  font-weight: normal;
+  margin-top: 1.25em;
 }
 
 // alerts etc.
 
 .alert {
-    color: $accent2;
+  color: $accent2;
 }
 
 .fg {
-    color: var(--col, $overlayElementFgColor);
+  color: var(--col, $overlayElementFgColor);
 }
 
 .bg {
-    background-color: var(--col, $background); // 変数使用 (#fff -> $background)
-    padding: 0.1em;
-    border-radius: 5px;
-    display: inline-block;
+  background-color: var(--col, $background); // 変数使用 (#fff -> $background)
+  padding: 0.1em;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 .emph {
-    color: $emp_fontc;
-    font-weight: bold;
-    font-size: $emphasisSize;  // Use variable instead of hardcoded 40px
+  color: $emp_fontc;
+  font-weight: bold;
+  font-size: $emphasisSize; // Use variable instead of hardcoded 40px
 }
 
 // lists
@@ -353,119 +377,130 @@ $overlayElementFgColor: 240, 240, 240;
 // Unordered lists
 
 .reveal ul {
-    font-weight: lighter;
-    padding-left: 16px;
-    margin-top: 0.4em;
-    margin-bottom: 0.2em;
+  padding-left: 16px;
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+}
+
+.reveal ul ul {
+  list-style: none;
+}
+.reveal ul ul li:before {
+  content: "→";
+  color: #70aebf;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  margin-right: 0.5em;
 }
 
 // Ordered lists
 
 .reveal ol {
-    font-weight: lighter;
-    padding-left: 16px;
-    margin-top: 0.4em;
-    margin-bottom: 0.2em;
+  // font-weight: lighter;
+  padding-left: 16px;
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
 
-    li::marker {
-        color: $accent;
-    }
+  li::marker {
+    color: $accent;
+  }
 }
 
 // Beamer-style button link environment
 
 .button {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    background-color: $accent;
-    border: 1px solid $accent;
-    color: #fff !important; // Button text color often needs high contrast, keeping #fff
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: $accent;
+  border: 1px solid $accent;
+  color: #fff !important; // Button text color often needs high contrast, keeping #fff
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
 }
 
 .button:hover {
-    background-color: color.scale($accent, $lightness: -10%);
-    border-color: color.scale($accent, $lightness: -12%);
+  background-color: color.scale($accent, $lightness: -10%);
+  border-color: color.scale($accent, $lightness: -12%);
 }
 
 .button::before {
-    content: "▶";
-    margin-right: 5px;
+  content: "▶";
+  margin-right: 5px;
 }
 
 // tables
 
 .reveal table {
-    margin: auto;
-    border-collapse: collapse;
-    overflow: auto;
+  margin: auto;
+  border-collapse: collapse;
+  overflow: auto;
 }
 
 .reveal table th,
 .reveal table td {
-    border: none;
-    padding: 0.23em;
-    text-align: left;
-    font-weight: lighter;
+  border: none;
+  padding: 0.23em;
+  text-align: left;
+  // font-weight: lighter;
 }
 
 /* Adds a bottom border to the table header row for distinction */
 .reveal table thead th,
 .reveal .slides table tr:last-child td,
 .reveal .slides table {
-    border-bottom: 2px solid $tableBorderBottomColor; // 変数使用
+  border-bottom: 2px solid $tableBorderBottomColor; // 変数使用
 }
 
 /* Make column headers bold */
 .reveal table thead th {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* Styling table captions */
 .reveal table caption {
-    color: $tableCaptionColor; // 変数使用
-    font-variant: small-caps;
+  color: $tableCaptionColor; // 変数使用
+  font-variant: small-caps;
 }
 
 // Special catch for etable environment
 .etable {
-    width: 100%;
-    height: calc(100% - 3em);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: calc(100% - 3em);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .etable img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 /*セクションタイトルのcss*/
 .hide-menubar {
-    .reveal h2 {
-        display: flex;
-        align-items: center;
-        height: 600px;
-    }
+  .reveal h2 {
+    display: flex;
+    align-items: center;
+    height: 600px;
+  }
 }
 
 // reveal-viewportに適用されるclassのcss
 .make-it-pop {
-    filter: drop-shadow(0 0 10px $purple); // purple -> $purple
+  filter: drop-shadow(0 0 10px $purple); // purple -> $purple
 }
 
 /*********************************************
@@ -473,9 +508,8 @@ $overlayElementFgColor: 240, 240, 240;
  *********************************************/
 
 // .reveal .slides {
-    // text-align: left;
+// text-align: left;
 // }
-
 
 .reveal .leftcol ul,
 .reveal .leftcol30 ul,
@@ -501,297 +535,295 @@ $overlayElementFgColor: 240, 240, 240;
 }
 
 .reveal .floatright {
-    float: right;
-    text-align: right;
+  float: right;
+  text-align: right;
 }
 .reveal .leftcol {
-    float: left;
-    width: 48%;
+  float: left;
+  width: 48%;
 }
 .reveal .rightcol {
-    float: right;
-    width: 48%;
+  float: right;
+  width: 48%;
 }
 .reveal .leftcol30 {
-    float: left;
-    width: 28%;
+  float: left;
+  width: 28%;
 }
 .reveal .rightcol30 {
-    float: right;
-    width: 28%;
+  float: right;
+  width: 28%;
 }
 .reveal .leftcol40 {
-    float: left;
-    width: 38%;
+  float: left;
+  width: 38%;
 }
 .reveal .rightcol40 {
-    float: right;
-    width: 38%;
+  float: right;
+  width: 38%;
 }
 .reveal .leftcol60 {
-    float: left;
-    width: 58%;
+  float: left;
+  width: 58%;
 }
 .reveal .rightcol60 {
-    float: right;
-    width: 58%;
+  float: right;
+  width: 58%;
 }
 .reveal .leftcol70 {
-    float: left;
-    width: 68%;
+  float: left;
+  width: 68%;
 }
 .reveal .rightcol70 {
-    float: right;
-    width: 68%;
+  float: right;
+  width: 68%;
 }
 
 .reveal .emphasis {
+  text-align: center;
+  p {
     text-align: center;
-    p {
-        text-align: center;
-        font-weight: bold;
-        color: $emp_fontc;
-        background-color: $emp_bg;
-        font-size: $emphasisSize;
-        display: inline-block;
-        padding: 0.5em 1em;
-        line-height: 1.8;
-    }
+    font-weight: bold;
+    color: $emp_fontc;
+    background-color: $emp_bg;
+    font-size: $emphasisSize;
+    display: inline-block;
+    padding: 0.5em 1em;
+    line-height: 1.8;
+  }
 }
 
 // Shapes (circles, squares, etc.)
 .arrow-up {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid $accent;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid $accent;
 }
 .arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid $accent;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid $accent;
 }
 .arrow-right {
-    width: 0;
-    height: 0;
-    border-top: 60px solid transparent;
-    border-bottom: 60px solid transparent;
-    border-left: 60px solid $accent;
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid $accent;
 }
 .arrow-left {
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid $accent;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid $accent;
 }
 
 .footpara {
-    display: inline;
+  display: inline;
 }
 .footdef {
-    text-align: left;
+  text-align: left;
 }
 .footnotes {
-    padding-top: 2em;
-    font-size: 0.6em;
+  padding-top: 2em;
+  font-size: 0.6em;
 }
 
 //Gantt chart
 .gantt {
-    display: grid;
-    border: 0;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-    box-shadow: 0 75px 125px -57px $ganttShadowColor; // 変数使用
+  display: grid;
+  border: 0;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 75px 125px -57px $ganttShadowColor; // 変数使用
 }
 .gantt__row {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    background-color: $background; // 変数使用 (#fff -> $background)
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  background-color: $background; // 変数使用 (#fff -> $background)
 }
 .gantt__row:nth-child(odd) {
-    background-color: $ganttOddRowBgColor; // 変数使用
+  background-color: $ganttOddRowBgColor; // 変数使用
 }
 .gantt__row:nth-child(odd) .gantt__row-first {
-    background-color: $ganttOddRowBgColor; // 変数使用
+  background-color: $ganttOddRowBgColor; // 変数使用
 }
 // .gantt__row:nth-child(3) .gantt__row-bars { border-top: 0; } // These seem specific, leaving as is
 // .gantt__row:nth-child(3) .gantt__row-first { border-top: 0; }
 .gantt__row--empty {
-    background-color: $ganttEmptyRowBgColor !important; // 変数使用
-    z-index: 1;
+  background-color: $ganttEmptyRowBgColor !important; // 変数使用
+  z-index: 1;
 }
 .gantt__row--empty .gantt__row-first {
-    border-width: 1px 1px 0 0;
+  border-width: 1px 1px 0 0;
 }
 .gantt__row--lines {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: transparent;
-    grid-template-columns: 150px repeat(12, 1fr);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  grid-template-columns: 150px repeat(12, 1fr);
 }
 .gantt__row--lines span {
-    display: block;
-    border-right: 1px solid $ganttLineColor; // 変数使用
+  display: block;
+  border-right: 1px solid $ganttLineColor; // 変数使用
 }
 .gantt__row--lines span.marker {
-    background-color: rgba(
-        10,
-        52,
-        68,
-        0.13
-    ); // Keeping specific color for marker overlay
-    z-index: 2;
+  background-color: rgba(
+    10,
+    52,
+    68,
+    0.13
+  ); // Keeping specific color for marker overlay
+  z-index: 2;
 }
 .gantt__row--lines:after {
-    grid-row: 1;
-    grid-column: 0;
-    background-color: #1688b345; // Keeping specific color for line overlay
-    z-index: 2;
-    height: 100%;
+  grid-row: 1;
+  grid-column: 0;
+  background-color: #1688b345; // Keeping specific color for line overlay
+  z-index: 2;
+  height: 100%;
 }
 .gantt__row--months {
-    color: $ganttMonthFgColor; // 変数使用
-    background-color: $ganttMonthBgColor !important; // 変数使用
-    border-bottom: 1px solid $ganttLineColor; // 変数使用
-    grid-template-columns: 150px repeat(12, 1fr);
+  color: $ganttMonthFgColor; // 変数使用
+  background-color: $ganttMonthBgColor !important; // 変数使用
+  border-bottom: 1px solid $ganttLineColor; // 変数使用
+  grid-template-columns: 150px repeat(12, 1fr);
 }
 .gantt__row--months .gantt__row-first {
-    border-top: 0 !important;
-    background-color: $ganttMonthBgColor !important; // 変数使用
+  border-top: 0 !important;
+  background-color: $ganttMonthBgColor !important; // 変数使用
 }
 .gantt__row--months span {
-    text-align: center;
-    font-size: 13px;
-    align-self: center;
-    font-weight: bold;
-    padding: 20px 0;
+  text-align: center;
+  font-size: 13px;
+  align-self: center;
+  font-weight: bold;
+  padding: 20px 0;
 }
 .gantt__row-first {
-    background-color: $background; // 変数使用 (#fff -> $background)
-    border-width: 1px 0 0 0;
-    border-color: $ganttLineColor; // 変数使用
-    border-style: solid;
-    padding: 15px 0;
-    font-size: 13px;
-    font-weight: bold;
-    text-align: center;
+  background-color: $background; // 変数使用 (#fff -> $background)
+  border-width: 1px 0 0 0;
+  border-color: $ganttLineColor; // 変数使用
+  border-style: solid;
+  padding: 15px 0;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
 }
 .gantt__row-bars {
-    list-style: none;
-    display: grid;
-    padding: 9px 0;
-    margin: 0;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 8px 0;
-    border-top: 1px solid color.scale($ganttLineColor, $lightness: -5%);
+  list-style: none;
+  display: grid;
+  padding: 9px 0;
+  margin: 0;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 8px 0;
+  border-top: 1px solid color.scale($ganttLineColor, $lightness: -5%);
 }
 .gantt__row-bars li {
-    font-weight: 500;
-    text-align: left;
-    font-size: 14px;
-    min-height: 15px;
-    background-color: $ganttBarBgColor; // 変数使用
-    padding: 5px 12px;
-    color: $ganttBarFgColor; // 変数使用
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    border-radius: 20px;
+  font-weight: 500;
+  text-align: left;
+  font-size: 14px;
+  min-height: 15px;
+  background-color: $ganttBarBgColor; // 変数使用
+  padding: 5px 12px;
+  color: $ganttBarFgColor; // 変数使用
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 20px;
 }
 .gantt__row-bars li.stripes {
-    background-image: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 5px,
-        $ganttStripeOverlay 5px,
-        // 変数使用
-        $ganttStripeOverlay 12px // 変数使用
-    );
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    $ganttStripeOverlay 5px,
+    // 変数使用
+    $ganttStripeOverlay 12px // 変数使用
+  );
 }
 .gantt__row-bars li:before,
 .gantt__row-bars li:after {
-    content: "";
-    height: 100%;
-    top: 0;
-    z-index: 4;
-    position: absolute;
-    background-color: $ganttHandleOverlay; // 変数使用
+  content: "";
+  height: 100%;
+  top: 0;
+  z-index: 4;
+  position: absolute;
+  background-color: $ganttHandleOverlay; // 変数使用
 }
 .gantt__row-bars li:before {
-    left: 0;
+  left: 0;
 }
 .gantt__row-bars li:after {
-    right: 0;
+  right: 0;
 }
 
-
 .reveal table.grid-table {
-    border-collapse: collapse;
-    width: 100%; 
-    font-size: 0.75em;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.75em;
 }
 
 .reveal table.grid-table td,
 .reveal table.grid-table th {
-    border: 2px solid #666;
-    padding: 8px;
+  border: 2px solid #666;
+  padding: 8px;
 }
 
 .reveal table.grid-table th {
-    background-color: rgba(100, 100, 100, 0.1);
-    font-weight: bold;
+  background-color: rgba(100, 100, 100, 0.1);
+  font-weight: bold;
 }
 
-
 .reveal pre {
-    width: 95%;
-    margin: 20px auto;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
+  width: 95%;
+  margin: 20px auto;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
 }
 
 .reveal pre code {
-    font-size: 0.85em;
-    padding: 1.2em;
-    line-height: 1.5;
+  font-size: 0.85em;
+  padding: 1.2em;
+  line-height: 1.5;
 }
 
 /* Better results block styling */
 .result-block {
-    background: #f8f9fa;
-    border-left: 4px solid #4a90e2;
-    padding: 15px 20px;
-    margin: 20px auto;
-    border-radius: 4px;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-    font-size: 0.9em;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background: #f8f9fa;
+  border-left: 4px solid #4a90e2;
+  padding: 15px 20px;
+  margin: 20px auto;
+  border-radius: 4px;
+  font-family: "Monaco", "Menlo", "Courier New", monospace;
+  font-size: 0.9em;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Figure styling */
 .reveal .figure {
-    margin: 20px auto;
+  margin: 20px auto;
 }
 
 .reveal .figure p {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 /* Caption styling */
 .reveal .figure .figure-number {
-    color: #666;
-    font-weight: bold;
+  color: #666;
+  font-weight: bold;
 }
 
-//  Make slide scrollable 
+//  Make slide scrollable
 .scrollable {
   overflow-y: scroll;
   height: 100%;
@@ -799,103 +831,103 @@ $overlayElementFgColor: 240, 240, 240;
 
 /* Better code block styling with rounded corners */
 .reveal pre {
-    width: 95%;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    overflow: hidden;
+  width: 95%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .reveal pre code {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 .reveal pre.example {
-    background: #2e3440;
-    color: #d8dee9;
-    border: 1px solid #4c566a;
-    border-radius: 12px;
-    padding: 1.5em 1em 0.6em 1em;  /* Reduced: top, right, bottom, left */
-    margin: 1em auto;
-    width: auto;  /* Let Reveal decide */
-    max-width: 80%;  /* Just set a maximum */
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
-    font-size: 0.45em;  /* Relative to parent */
-    line-height: 1.2;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-    position: relative;
-    overflow: auto;
+  background: #2e3440;
+  color: #d8dee9;
+  border: 1px solid #4c566a;
+  border-radius: 12px;
+  padding: 1.5em 1em 0.6em 1em; /* Reduced: top, right, bottom, left */
+  margin: 1em auto;
+  width: auto; /* Let Reveal decide */
+  max-width: 80%; /* Just set a maximum */
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Courier New", monospace;
+  font-size: 0.45em; /* Relative to parent */
+  line-height: 1.2;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: auto;
 }
 
 .reveal pre.example::before {
-    content: '○ ○ ○  出力';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #3b4252;
-    color: #88c0d0;
-    padding: 0.3em 0.8em;
-    border-radius: 12px 12px 0 0;
-    font-size: 0.65em;
-    font-weight: bold;
+  content: "○ ○ ○  出力";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #3b4252;
+  color: #88c0d0;
+  padding: 0.3em 0.8em;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.65em;
+  font-weight: bold;
 }
 
 /* Only set max-height on scrollable slides if needed */
 .scrollable .reveal pre.example {
-    max-height: 50vh;  /* Viewport-relative */
+  max-height: 50vh; /* Viewport-relative */
 }
 
 /* Custom scrollbar styling for terminal output */
 .reveal pre.example::-webkit-scrollbar {
-    height: 6px;  /* Thinner scrollbar */
-    width: 6px;
+  height: 6px; /* Thinner scrollbar */
+  width: 6px;
 }
 
 .reveal pre.example::-webkit-scrollbar-track {
-    background: #3b4252;
+  background: #3b4252;
 }
 
 .reveal pre.example::-webkit-scrollbar-thumb {
-    background: #4c566a;
-    border-radius: 4px;
+  background: #4c566a;
+  border-radius: 4px;
 }
 
 .reveal pre.example::-webkit-scrollbar-thumb:hover {
-    background: #5e81ac;
+  background: #5e81ac;
 }
 /* Better results block styling */
 .result-block {
-    background: #f8f9fa;
-    border-left: 4px solid #4a90e2;
-    padding: 15px 20px;
-    margin: 20px auto;
-    border-radius: 8px;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-    font-size: 0.9em;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background: #f8f9fa;
+  border-left: 4px solid #4a90e2;
+  padding: 15px 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  font-family: "Monaco", "Menlo", "Courier New", monospace;
+  font-size: 0.9em;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Figure styling */
 .reveal .figure {
-    margin: 20px auto;
-    max-width: 100%;
+  margin: 20px auto;
+  max-width: 100%;
 
-    img {
-        max-width: 100%;
-        max-height: 500px;
-        height: auto !important;
-        width: auto !important;
-        object-fit: contain;
-    }
+  img {
+    max-width: 100%;
+    max-height: 500px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+  }
 }
 
 .reveal .figure p {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 /* Caption styling */
 .reveal .figure .figure-number {
-    color: #666;
-    font-weight: bold;
+  color: #666;
+  font-weight: bold;
 }
 
 /* Better scaling for images in columns */
@@ -909,73 +941,277 @@ $overlayElementFgColor: 240, 240, 240;
 .reveal .rightcol60 .figure img,
 .reveal .leftcol70 .figure img,
 .reveal .rightcol70 .figure img {
-    max-width: 100%;
-    max-height: 450px;
-    height: auto !important;
-    width: auto !important;
-    object-fit: contain;
+  max-width: 100%;
+  max-height: 450px;
+  height: auto !important;
+  width: auto !important;
+  object-fit: contain;
 }
 
 /* Alternative: Lighter terminal theme (if you prefer) */
 .reveal pre.example.light-terminal {
-    background: #f4f4f4;
-    color: #2e3440;
-    border: 1px solid #d8dee9;
+  background: #f4f4f4;
+  color: #2e3440;
+  border: 1px solid #d8dee9;
 }
 
 .reveal pre.example.light-terminal::before {
-    background: #e5e9f0;
-    color: #5e81ac;
+  background: #e5e9f0;
+  color: #5e81ac;
 }
 
 // Survey announcement box
 .reveal .survey-announce {
-    text-align: center;
-    padding: 40px;
-    background: #fff;
-    border: 1px solid #d3d3d3;
-    margin: 30px auto;
-    max-width: 90%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #d3d3d3;
+  margin: 30px auto;
+  max-width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
-    h3 {
-        color: #222;
-        margin-bottom: 20px;
-        font-weight: 400;
-        font-size: 1.3em;
-        letter-spacing: 0.05em;
+  h3 {
+    color: #222;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 1.3em;
+    letter-spacing: 0.05em;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 25px;
+    font-weight: 300;
+    font-size: 0.95em;
+  }
+
+  a {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    border: 1px solid #222;
+    font-weight: 300;
+    font-size: 0.95em;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #fff;
+      color: #222;
     }
+  }
 
-    p {
-        color: #666;
-        margin-bottom: 25px;
-        font-weight: 300;
-        font-size: 0.95em;
-    }
-
-    a {
-        display: inline-block;
-        padding: 12px 28px;
-        background: #222;
-        color: white;
-        text-decoration: none;
-        border: 1px solid #222;
-        font-weight: 300;
-        font-size: 0.95em;
-        letter-spacing: 0.1em;
-        transition: all 0.2s;
-
-        &:hover {
-            background: #fff;
-            color: #222;
-        }
-    }
-
-    .deadline {
-        color: #999;
-        margin-top: 20px;
-        font-size: 0.85em;
-        font-weight: 300;
-    }
+  .deadline {
+    color: #999;
+    margin-top: 20px;
+    font-size: 0.85em;
+    font-weight: 300;
+  }
 }
 
+.Cube {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  font-size: 50px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s;
+  perspective: 9999px;
+  color: #333;
+  margin: -40px 0 0 -40px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -37px;
+  top: 65px;
+  opacity: 1;
+}
+.Cube.panelLoad {
+  z-index: 11;
+  top: 70%;
+  margin-top: 2em;
+  -webkit-animation: panel 2.2s infinite forwards;
+  animation: panel 2.2s infinite forwards;
+}
+.Cube.panelLoad .cube-face {
+  color: black;
+  box-shadow:
+    inset 0 0 0 1px #111,
+    0 0 1px 1px #111;
+}
+.Cube .cube-face {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  /* background: #d2e5ff; */
+  background: white;
+  box-shadow:
+    inset 0 0 0 1px #333,
+    0 0 1px 1px #333;
+  opacity: 1;
+}
+.Cube .cube-face-front {
+  transform: translate3d(0, 0, 40px);
+  -webkit-transform: translate3d(0, 0, 40px);
+  font-size: 57px;
+}
+.Cube .cube-face-back {
+  -webkit-transform: rotateY(180deg) translate3d(0, 0, 40px);
+  transform: rotateY(180deg) translate3d(0, 0, 40px);
+}
+.Cube .cube-face-left {
+  -webkit-transform: rotateY(-90deg) translate3d(0, 0, 40px);
+  transform: rotateY(-90deg) translate3d(0, 0, 40px);
+}
+.Cube .cube-face-right {
+  -webkit-transform: rotateY(90deg) translate3d(0, 0, 40px);
+  transform: rotateY(90deg) translate3d(0, 0, 40px);
+}
+.Cube .cube-face-top {
+  -webkit-transform: rotateX(90deg) translate3d(0, 0, 40px);
+  transform: rotateX(90deg) translate3d(0, 0, 40px);
+}
+.Cube .cube-face-bottom {
+  -webkit-transform: rotateX(-90deg) translate3d(0, 0, 40px);
+  transform: rotateX(-90deg) translate3d(0, 0, 40px);
+}
+
+@-webkit-keyframes panel {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateY(90deg) rotateZ(0deg);
+  }
+  40% {
+    -webkit-transform: rotateX(45deg) rotateZ(45deg);
+  }
+  60% {
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  80% {
+    -webkit-transform: rotateX(310deg) rotateZ(230deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+
+@keyframes panel {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg);
+    transform: rotateY(0deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateY(90deg) rotateZ(0deg);
+    transform: rotateY(90deg) rotateZ(0deg);
+  }
+  40% {
+    -webkit-transform: rotateX(45deg) rotateZ(45deg);
+    transform: rotateX(45deg) rotateZ(45deg);
+  }
+  60% {
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+    transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  80% {
+    -webkit-transform: rotateX(310deg) rotateZ(230deg);
+    transform: rotateX(310deg) rotateZ(230deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg) rotateZ(360deg);
+    transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+
+.restab table {
+  width: 100%;
+  height: 70%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+.restab table th,
+.restab table td {
+  /* padding: 8px; */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.restab table th {
+  background-color: #f2f2f2;
+}
+
+.restab table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.restab table td:first-child {
+  font-weight: lighter;
+}
+
+.restab {
+  max-height: 40vh;
+  overflow-y: scroll;
+  border-right: 1px solid #ccc;
+}
+
+.restab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 240, 0),
+    rgba(255, 255, 240, 1)
+  ); /* Ivory color */
+  pointer-events: none;
+}
+
+section.two-column-grid {
+  display: flex !important; /* Use flex to manage alignment in the container */
+  flex-direction: column; /* Ensure normal stacking in flow */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally if needed */
+  height: 100vh; /* Make the section fill full viewport */
+  width: 100%; /* Ensure the width fills the viewport */
+}
+
+/* Set the grid layout within slide-contents */
+section.two-column-grid .slide-contents {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 1.5rem;
+  align-items: center; /* Ensure grid items are centered */
+  justify-items: center; /* Horizontally center grid items */
+  height: 100%; /* Slide contents will now stretch to parent height */
+  width: 100%; /* Ensure it also takes full width */
+}
+
+section.two-column-grid h2,
+section.two-column-grid h3 {
+  align-self: flex-start; /* Align to the top left horizontally */
+  margin: 0; /* Reset default margin */
+  width: 100%; /* Expand to the entire width of the section */
+  text-align: left; /* Ensure the text aligns left */
+}
+
+section.two-column-grid .slide-contents aside.notes ul,
+section.two-column-grid .slide-contents aside.notes ol {
+  /* Base line-height slightly relaxed */
+  line-height: 1.4;
+}
+
+/* If your base font size is reasonable, you can even do: */
+section.two-column-grid .slide-contents aside.notes {
+  font-size: clamp(0.95rem, 1.1vh + 0.6rem, 1.3rem);
+  line-height: 1.4;
+}
