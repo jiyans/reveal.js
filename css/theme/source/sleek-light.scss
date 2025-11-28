@@ -829,46 +829,77 @@ $overlayElementFgColor: 240, 240, 240;
   height: 100%;
 }
 
-/* Better code block styling with rounded corners */
+/* General Reveal.js Code Styling - Integrated */
 .reveal pre {
-  width: 95%;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  overflow: hidden;
+  width: 100%; /* Take up all available space */
+  max-width: 100%; /* Stay within container's limits */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  border-radius: 12px; /* Rounded corners */
+  overflow: hidden; /* Hide content spilling out */
+  margin: 0; /* Reset any margins if needed */
 }
 
 .reveal pre code {
-  border-radius: 12px;
+  font-family:
+    "Monaco", "Menlo", "Ubuntu Mono", "Courier New", monospace; /* Use fixed-width font */
+  font-size: 0.9em; /* Adjust font size */
+  border-radius: 12px; /* Inherit rounded corners */
+  display: block;
+  overflow: auto; /* Allow scrolling for long code lines */
+  white-space: pre; /* Preserve code formatting */
+  padding: 10px; /* Inner padding for readability */
 }
+
+/* Styling for Output Blocks */
 .reveal pre.example {
-  background: #2e3440;
-  color: #d8dee9;
-  border: 1px solid #4c566a;
-  border-radius: 12px;
-  padding: 1.5em 1em 0.6em 1em; /* Reduced: top, right, bottom, left */
-  margin: 1em auto;
-  width: auto; /* Let Reveal decide */
-  max-width: 80%; /* Just set a maximum */
-  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Courier New", monospace;
-  font-size: 0.45em; /* Relative to parent */
-  line-height: 1.2;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  background: #2e3440; /* Dark background for output block */
+  color: #d8dee9; /* Light text for contrast */
+  border: 1px solid #4c566a; /* Subtle border */
+  border-radius: 12px; /* Rounded corners */
+  padding: 1.5em 1em 0.6em 1em; /* Adjust padding (top, right, bottom, left) */
+  margin: 1em auto; /* Center the block vertically */
+  width: 100%; /* Take up full slide width */
+  max-width: 100%; /* Stay within slide boundaries */
+  font-family:
+    "Monaco", "Menlo", "Ubuntu Mono", "Courier New", monospace; /* Fixed-width font */
+  font-size: 0.45em; /* Adjust scaling; relative */
+  line-height: 1.2; /* Adjust spacing between lines */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25); /* Enhanced shadow for depth */
   position: relative;
-  overflow: auto;
+  overflow: auto; /* Allow scrolling for long code */
 }
 
 .reveal pre.example::before {
-  content: "○ ○ ○  出力";
+  content: "○ ○ ○  出力"; /* Leading label */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  background: #3b4252;
-  color: #88c0d0;
-  padding: 0.3em 0.8em;
-  border-radius: 12px 12px 0 0;
-  font-size: 0.65em;
-  font-weight: bold;
+  background: #3b4252; /* Slightly darker background for label */
+  color: #88c0d0; /* Aqua color for text */
+  padding: 0.3em 0.8em; /* Inner padding for label */
+  border-radius: 12px 12px 0 0; /* Match top rounded corners */
+  font-size: 0.65em; /* Adjust label size */
+  font-weight: bold; /* Add bold weight */
+}
+
+/* Ensure code blocks respect grid layout */
+.reveal pre.code-wrapper,
+.reveal pre.example {
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Let code blocks wrap text (optional) */
+.reveal pre code {
+  white-space: pre-wrap; /* Wrap lines instead of truncating */
+  word-break: break-word; /* Break long tokens when needed */
+}
+
+/* Make .org-src-container match */
+.reveal .org-src-container {
+  width: 100%; /* Use entire width */
+  max-width: 100%; /* Stay within limits */
+  margin: 15px auto; /* Center the container */
 }
 
 /* Only set max-height on scrollable slides if needed */
@@ -1176,42 +1207,42 @@ $overlayElementFgColor: 240, 240, 240;
   pointer-events: none;
 }
 
-section.two-column-grid {
-  display: flex !important; /* Use flex to manage alignment in the container */
-  flex-direction: column; /* Ensure normal stacking in flow */
-  justify-content: center; /* Center children vertically */
-  align-items: center; /* Center children horizontally if needed */
-  height: 100vh; /* Make the section fill full viewport */
-  width: 100%; /* Ensure the width fills the viewport */
-}
-
-/* Set the grid layout within slide-contents */
-section.two-column-grid .slide-contents {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+.reveal .slides .grid-wrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  align-items: center; /* Ensure grid items are centered */
-  justify-items: center; /* Horizontally center grid items */
-  height: 100%; /* Slide contents will now stretch to parent height */
-  width: 100%; /* Ensure it also takes full width */
+  align-items: start;
+  justify-items: stretch;
 }
 
-section.two-column-grid h2,
-section.two-column-grid h3 {
-  align-self: flex-start; /* Align to the top left horizontally */
-  margin: 0; /* Reset default margin */
-  width: 100%; /* Expand to the entire width of the section */
-  text-align: left; /* Ensure the text aligns left */
+.reveal .slides section.cols-2 .grid-wrapper {
+  grid-template-columns: 1fr 1fr;
 }
 
-section.two-column-grid .slide-contents aside.notes ul,
-section.two-column-grid .slide-contents aside.notes ol {
-  /* Base line-height slightly relaxed */
-  line-height: 1.4;
+.reveal .slides section.cols-2 .grid-wrapper h1,
+.reveal .slides section.cols-2 .grid-wrapper h2,
+.reveal .slides section.cols-2 .grid-wrapper h3,
+.reveal .slides section.cols-2 .grid-wrapper h4 {
+  grid-column: 1 / -1;
+  margin: 0 0 0.5em 0;
 }
 
-/* If your base font size is reasonable, you can even do: */
-section.two-column-grid .slide-contents aside.notes {
-  font-size: clamp(0.95rem, 1.1vh + 0.6rem, 1.3rem);
-  line-height: 1.4;
+/* If you have the .title-inline class AND .cols-2, let headers sit in one column */
+.reveal .slides section.cols-2.title-inline .grid-wrapper h1,
+.reveal .slides section.cols-2.title-inline .grid-wrapper h2,
+.reveal .slides section.cols-2.title-inline .grid-wrapper h3,
+.reveal .slides section.cols-2.title-inline .grid-wrapper h4 {
+  grid-column: auto;
+}
+.reveal .slides section.title-slide-no-grid .grid-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.reveal .slides #table-of-contents-section .grid-wrapper {
+  display: block;
+  width: 100%;
+  grid-template-columns: none;
+  gap: 0;
 }
