@@ -1396,6 +1396,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal .slides section.cols-2 .grid-wrapper h4 {
   grid-column: 1/-1;
   margin: 0 0 0.5em 0;
+  text-align: center;
+  align-self: center;
 }
 
 /* If you have the .title-inline class AND .cols-2, let headers sit in one column */
