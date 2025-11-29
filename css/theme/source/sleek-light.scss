@@ -1242,6 +1242,11 @@ $overlayElementFgColor: 240, 240, 240;
   width: 100%;
 }
 
+.reveal .slides section.cols-2 .grid-wrapper .figure:has(img.figure-span-2) {
+  grid-row: span 2;
+  align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
+}
+
 .reveal .slides #table-of-contents-section .grid-wrapper {
   display: block;
   width: 100%;
