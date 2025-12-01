@@ -794,6 +794,7 @@ $overlayElementFgColor: 240, 240, 240;
   font-size: 0.85em;
   padding: 1.2em;
   line-height: 1.5;
+  max-height: none;
 }
 
 /* Better results block styling */
@@ -1252,4 +1253,17 @@ $overlayElementFgColor: 240, 240, 240;
   width: 100%;
   grid-template-columns: none;
   gap: 0;
+}
+
+.grid-wrapper > p:empty,
+.grid-wrapper > div:empty {
+  display: none;
+}
+
+.reveal
+  .slides
+  section.cols-2
+  .grid-wrapper
+  .org-src-container:has(pre.code-span-2) {
+  grid-row: span 2;
 }
