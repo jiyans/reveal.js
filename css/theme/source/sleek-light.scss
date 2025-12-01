@@ -385,6 +385,11 @@ $overlayElementFgColor: 240, 240, 240;
 .reveal ul ul {
   list-style: none;
 }
+
+.reveal ul ul ul {
+  list-style: none;
+}
+
 .reveal ul ul li:before {
   content: "→";
   color: #70aebf;
