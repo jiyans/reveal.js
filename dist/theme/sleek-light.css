@@ -665,6 +665,15 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   font-variant: small-caps;
 }
 
+.reveal table.small-table {
+  font-size: 80%;
+}
+
+.reveal table.small-table th,
+.reveal table.small-table td {
+  padding: 0.1em 0.3em;
+}
+
 .etable {
   width: 100%;
   height: calc(100% - 3em);
@@ -1437,8 +1446,13 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   width: 100%;
 }
 
-.reveal .slides section.cols-2 .grid-wrapper .figure:has(img.figure-span-2) {
+.reveal .slides section.cols-2 .grid-wrapper .figure:has(img.figure-row-span-2) {
   grid-row: span 2;
+  align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
+}
+
+.reveal .slides section.cols-2 .grid-wrapper .figure:has(img.figure-col-span-2) {
+  grid-column: span 2;
   align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
 }
 
@@ -1454,6 +1468,18 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   display: none;
 }
 
-.reveal .slides section.cols-2 .grid-wrapper .org-src-container:has(pre.code-span-2) {
+.reveal .slides section.cols-2 .grid-wrapper .org-src-container:has(pre.code-row-span-2) {
   grid-row: span 2;
+}
+
+.reveal .slides section.cols-2 .grid-wrapper .org-src-container:has(pre.code-col-span-2) {
+  grid-column: span 2;
+}
+
+.reveal .slides section.cols-2 .grid-wrapper .org-src-container:has(pre.justify-self) {
+  justify-self: center;
+}
+
+.reveal .slides section.cols-2 .grid-wrapper .org-src-container:has(pre.align-self) {
+  align-self: center;
 }

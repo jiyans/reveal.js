@@ -188,32 +188,32 @@ $overlayElementFgColor: 240, 240, 240;
   blockquote {
     position: relative;
     box-sizing: border-box;
-    padding: 1.2em 3em; 
+    padding: 1.2em 3em;
     display: block;
-    
+
     // CHANGE: 5% opaque black creates a nice neutral grey on your beige background
     background-color: rgba(0, 0, 0, 0.05);
-    
+
     // Round the corners slightly more to look like a distinct block
     border-radius: 8px;
 
     // Keep the other styles consistent with your theme
-    color: $foreground; 
-    border-left: 4px solid $emacsColor; 
-    font-family: $mainFont; 
-    font-style: normal; 
+    color: $foreground;
+    border-left: 4px solid $emacsColor;
+    font-family: $mainFont;
+    font-style: normal;
 
     // --- Opening Quote ---
     &::before {
       content: "\201C";
       font-family: $headingFont;
       font-size: 4em;
-      color: rgba($emacsColor, 0.25); 
+      color: rgba($emacsColor, 0.25);
       position: absolute;
       left: 10px;
       top: -10px;
       line-height: 1;
-      z-index: 0; 
+      z-index: 0;
     }
 
     // --- Closing Quote ---
@@ -221,12 +221,12 @@ $overlayElementFgColor: 240, 240, 240;
       content: "\201D";
       font-family: $headingFont;
       font-size: 4em;
-      color: rgba($emacsColor, 0.25); 
+      color: rgba($emacsColor, 0.25);
       position: absolute;
       right: 10px;
-      bottom: -50px; 
+      bottom: -50px;
       line-height: 1;
-      z-index: 0; 
+      z-index: 0;
     }
 
     p {
@@ -246,15 +246,15 @@ $overlayElementFgColor: 240, 240, 240;
       display: block;
       text-align: right;
       font-style: normal;
-      font-size: 0.8em; 
-      color: $subtleTextColor; 
+      font-size: 0.8em;
+      color: $subtleTextColor;
       margin-top: 0.8em;
       position: relative;
       z-index: 1;
       font-weight: bold;
-      
+
       &::before {
-         content: "— "; 
+        content: "— ";
       }
     }
   }
@@ -492,6 +492,14 @@ $overlayElementFgColor: 240, 240, 240;
 .reveal table caption {
   color: $tableCaptionColor; // 変数使用
   font-variant: small-caps;
+}
+
+.reveal table.small-table {
+  font-size: 80%;
+}
+.reveal table.small-table th,
+.reveal table.small-table td {
+  padding: 0.1em 0.3em;
 }
 
 // Special catch for etable environment
@@ -1265,8 +1273,21 @@ $overlayElementFgColor: 240, 240, 240;
   width: 100%;
 }
 
-.reveal .slides section.cols-2 .grid-wrapper .figure:has(img.figure-span-2) {
+.reveal
+  .slides
+  section.cols-2
+  .grid-wrapper
+  .figure:has(img.figure-row-span-2) {
   grid-row: span 2;
+  align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
+}
+
+.reveal
+  .slides
+  section.cols-2
+  .grid-wrapper
+  .figure:has(img.figure-col-span-2) {
+  grid-column: span 2;
   align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
 }
 
@@ -1286,6 +1307,30 @@ $overlayElementFgColor: 240, 240, 240;
   .slides
   section.cols-2
   .grid-wrapper
-  .org-src-container:has(pre.code-span-2) {
+  .org-src-container:has(pre.code-row-span-2) {
   grid-row: span 2;
+}
+
+.reveal
+  .slides
+  section.cols-2
+  .grid-wrapper
+  .org-src-container:has(pre.code-col-span-2) {
+  grid-column: span 2;
+}
+
+.reveal
+  .slides
+  section.cols-2
+  .grid-wrapper
+  .org-src-container:has(pre.justify-self) {
+  justify-self: center;
+}
+
+.reveal
+  .slides
+  section.cols-2
+  .grid-wrapper
+  .org-src-container:has(pre.align-self) {
+  align-self: center;
 }
