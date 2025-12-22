@@ -137,6 +137,12 @@ $overlayElementFgColor: 240, 240, 240;
     "Source Han Serif", "IPAMincho", "Hiragino Mincho ProN", "Yu Mincho", serif !important;
 }
 
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+  color: #9a2515; /* mybrick */
+}
+
 .reveal {
   a {
     font-weight: bold; /* Makes the text bold */
@@ -1333,4 +1339,48 @@ $overlayElementFgColor: 240, 240, 240;
   .grid-wrapper
   .org-src-container:has(pre.align-self) {
   align-self: center;
+}
+
+.reveal .slides section.cols-3 .grid-wrapper {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.reveal .slides section.cols-3 .grid-wrapper h1,
+.reveal .slides section.cols-3 .grid-wrapper h2,
+.reveal .slides section.cols-3 .grid-wrapper h3,
+.reveal .slides section.cols-3 .grid-wrapper h4 {
+  grid-column: 1 / -1;
+  margin: 0 0 0.5em 0;
+  text-align: center;
+  align-self: center;
+}
+
+/* If you have the .title-inline class AND .cols-2, let headers sit in one column */
+.reveal .slides section.cols-3.title-inline .grid-wrapper h1,
+.reveal .slides section.cols-3.title-inline .grid-wrapper h2,
+.reveal .slides section.cols-3.title-inline .grid-wrapper h3,
+.reveal .slides section.cols-3.title-inline .grid-wrapper h4 {
+  grid-column: auto;
+}
+.reveal .slides section.title-slide-no-grid .grid-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.reveal
+  .slides
+  section.cols-3
+  .grid-wrapper
+  .figure:has(img.figure-row-span-2) {
+  grid-row: span 2;
+  align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
+}
+
+.reveal
+  .slides
+  section.cols-3
+  .grid-wrapper
+  .figure:has(img.figure-col-span-2) {
+  grid-column: span 2;
+  align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
 }
