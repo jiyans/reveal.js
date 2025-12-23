@@ -1490,6 +1490,18 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   align-self: center;
 }
 
+.reveal .slides section.items-center .grid-wrapper {
+  align-items: center;
+}
+
+.reveal .slides section.items-start .grid-wrapper {
+  align-items: start;
+}
+
+.reveal .slides section.items-end .grid-wrapper {
+  align-items: end;
+}
+
 .reveal .slides section.cols-3 .grid-wrapper {
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -1534,4 +1546,31 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   border-left: 4px solid #107895;
   margin-top: 22px;
   list-style: none;
+}
+
+.simple-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  margin: 1em auto;
+}
+.simple-data-table th {
+  background: #f5f5f5;
+  padding: 12px;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  font-weight: bold;
+}
+.simple-data-table td {
+  padding: 12px;
+  border: 1px solid #d3d3d3;
+}
+.simple-data-table tbody tr:nth-child(even) {
+  background: #f5f5f5;
+}
+.simple-data-table .no-order {
+  color: #107895;
+}
+.simple-data-table .has-order {
+  color: #9a2515;
 }

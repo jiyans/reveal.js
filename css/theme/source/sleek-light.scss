@@ -1341,6 +1341,16 @@ $overlayElementFgColor: 240, 240, 240;
   align-self: center;
 }
 
+.reveal .slides section.items-center .grid-wrapper {
+  align-items: center;
+}
+.reveal .slides section.items-start .grid-wrapper {
+  align-items: start;
+}
+.reveal .slides section.items-end .grid-wrapper {
+  align-items: end;
+}
+
 .reveal .slides section.cols-3 .grid-wrapper {
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -1392,4 +1402,36 @@ $overlayElementFgColor: 240, 240, 240;
   border-left: 4px solid #107895;
   margin-top: 22px;
   list-style: none;
+}
+
+.simple-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  margin: 1em auto;
+
+  th {
+    background: $ganttOddRowBgColor; // Reusing your existing variable
+    padding: 12px;
+    border: 1px solid $tableBorderBottomColor;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  td {
+    padding: 12px;
+    border: 1px solid $tableBorderBottomColor;
+  }
+
+  tbody tr:nth-child(even) {
+    background: $ganttOddRowBgColor;
+  }
+
+  .no-order {
+    color: $distinctLinkColor;
+  }
+
+  .has-order {
+    color: $red;
+  }
 }
