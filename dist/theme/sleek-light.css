@@ -1526,3 +1526,12 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   grid-column: span 2;
   align-self: stretch; /* 必要なら縦方向いっぱいに広げる */
 }
+
+.reveal .explanationbox {
+  background: #f0f7fa;
+  padding: 14px 18px;
+  border-radius: 4px;
+  border-left: 4px solid #107895;
+  margin-top: 22px;
+  list-style: none;
+}
