@@ -534,6 +534,13 @@ $overlayElementFgColor: 240, 240, 240;
   }
 }
 
+.hide-title {
+  .reveal h2,
+  .reveal h3 {
+    display: none !important;
+  }
+}
+
 // reveal-viewportに適用されるclassのcss
 .make-it-pop {
   filter: drop-shadow(0 0 10px $purple); // purple -> $purple
