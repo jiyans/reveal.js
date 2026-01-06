@@ -703,8 +703,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   height: 600px;
 }
 
-.hide-title .reveal h2,
-.hide-title .reveal h3 {
+.reveal .slides section.hide-slide-contents > * {
   display: none !important;
 }
 

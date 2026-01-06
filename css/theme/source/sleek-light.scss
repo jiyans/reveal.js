@@ -534,11 +534,8 @@ $overlayElementFgColor: 240, 240, 240;
   }
 }
 
-.hide-title {
-  .reveal h2,
-  .reveal h3 {
-    display: none !important;
-  }
+.reveal .slides section.hide-slide-contents > * {
+  display: none !important;
 }
 
 // reveal-viewportに適用されるclassのcss
